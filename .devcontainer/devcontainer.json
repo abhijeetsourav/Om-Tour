@@ -1,12 +1,11 @@
 {
   "name": "Om-Tour (Python + Next.js)",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.11"
     },
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "forwardPorts": [3000, 8000, 8001],
   "portsAttributes": {
@@ -28,7 +27,7 @@
     "PYTHONUNBUFFERED": "1"
   },
   "initializeCommand": "git config --global core.autocrlf input",
-  "postCreateCommand": "cd ui && pnpm install && cd ../agent && pip install -e . && cd ..",
+  "postCreateCommand": "cd ui && npm install || true && cd ../agent && pip install -e . || true",
   "customizations": {
     "vscode": {
       "extensions": [
