@@ -1,13 +1,19 @@
 {
   "name": "Om-Tour (Python + Next.js)",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
+
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.11"
     },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
     "ghcr.io/devcontainers/features/git:1": {}
   },
+
   "forwardPorts": [3000, 8000, 8001],
+
   "portsAttributes": {
     "3000": {
       "label": "Frontend",
@@ -22,12 +28,14 @@
       "onAutoForward": "notify"
     }
   },
+
   "remoteEnv": {
     "NODE_ENV": "development",
     "PYTHONUNBUFFERED": "1"
   },
-  "initializeCommand": "git config --global core.autocrlf input",
-  "postCreateCommand": "cd ui && npm install || true && cd ../agent && pip install -e . || true",
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -46,82 +54,9 @@
         "mhutchie.git-graph",
         "redhat.vscode-yaml",
         "charliermarsh.ruff"
-      ],
-      "settings": {
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true,
-        "python.formatting.provider": "black",
-        "python.linting.ruffEnabled": true,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.codeActionsOnSave": {
-          "source.fixAll.ruff": "explicit"
-        },
-        "files.exclude": {
-          "**/__pycache__": true,
-          "**/.pytest_cache": true,
-          "**/.venv": true,
-          "**/node_modules": true,
-          "**/.next": true
-        },
-        "[python]": {
-          "editor.defaultFormatter": "ms-python.python",
-          "editor.formatOnSave": true
-        },
-        "[typescript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "[json]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.formatOnSave": true
-        },
-        "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.shell.linux": "/bin/bash",
-        "git.autofetch": true,
-        "git.autorefresh": true,
-        "debug.node.autoAttach": "off"
-      },
-      "launch": {
-        "version": "0.2.0",
-        "configurations": [
-          {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-          },
-          {
-            "name": "Python: Agent Server",
-            "type": "python",
-            "request": "launch",
-            "module": "uvicorn",
-            "args": [
-              "travel.agent:app",
-              "--reload",
-              "--host",
-              "0.0.0.0",
-              "--port",
-              "8000"
-            ],
-            "jinja": true,
-            "cwd": "${workspaceFolder}/agent",
-            "console": "integratedTerminal"
-          },
-          {
-            "name": "Node: Next.js",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceFolder}/ui/node_modules/.bin/next",
-            "args": ["dev"],
-            "cwd": "${workspaceFolder}/ui",
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen"
-          }
-        ]
-      }
+      ]
     }
   },
+
   "remoteUser": "codespace"
 }

@@ -12,16 +12,27 @@ from langchain.tools import tool
 from copilotkit.langgraph import copilotkit_emit_state, copilotkit_customize_config
 from travel.state import AgentState
 
+
 @tool
 def search_for_places(queries: list[str]) -> list[dict]:
     """Search for places based on a query, returns a list of places including their name, address, and coordinates."""
 
-gmaps = googlemaps.Client(key=os.getenv("GOOGLE_MAPS_API_KEY"))
+
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
+
+gmaps = None
+if GOOGLE_MAPS_API_KEY:
+    gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
+
 
 async def search_node(state: AgentState, config: RunnableConfig):
     """
     The search node is responsible for searching the for places.
     """
+    if not gmaps:
+        state["messages"].append(ToolMessage(tool_call_id=state["messages"]
+                                 [-1].tool_calls[0]["id"], content="Error: Google Maps API key missing."))
+        return state
     ai_message = cast(AIMessage, state["messages"][-1])
 
     config = copilotkit_customize_config(

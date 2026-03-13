@@ -17,7 +17,7 @@ MapCanvas = dynamic(
     import("@/components/MapCanvas").then((module: any) => module.MapCanvas),
   {
     ssr: false,
-  }
+  },
 );
 
 export default function Home() {
@@ -28,11 +28,7 @@ export default function Home() {
   return (
     <CopilotKit
       agent="travel"
-      runtimeUrl={
-        process.env.NEXT_PUBLIC_CPK_PUBLIC_API_KEY == undefined
-          ? `/api/copilotkit?lgcDeploymentUrl=${lgcDeploymentUrl ?? ""}`
-          : "https://api.cloud.copilotkit.ai/copilotkit/v1"
-      }
+      runtimeUrl="/api/copilotkit"
       publicApiKey={process.env.NEXT_PUBLIC_CPK_PUBLIC_API_KEY}
     >
       <CopilotSidebar

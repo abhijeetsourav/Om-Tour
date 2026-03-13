@@ -21,7 +21,9 @@ dependencies = [
     "uvicorn",
     "copilotkit==0.1.41",
     "googlemaps",
-    "html2text"
+    "html2text",
+    "ormsgpack (>=1.12.2,<2.0.0)",
+    "langchain-groq (==0.2.5)"
 ]
 
 [tool.poetry.dependencies]

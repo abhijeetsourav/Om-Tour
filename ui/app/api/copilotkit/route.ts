@@ -15,24 +15,33 @@ const langsmithApiKey = process.env.LANGSMITH_API_KEY as string;
 
 export const POST = async (req: NextRequest) => {
   const searchParams = req.nextUrl.searchParams;
-  const deploymentUrl = searchParams.get("lgcDeploymentUrl");
 
-  const remoteEndpoint = deploymentUrl
-    ? langGraphPlatformEndpoint({
-        deploymentUrl,
-        langsmithApiKey,
-        agents: [
-          {
-            name: "travel",
-            description:
-              "This agent helps the user plan and manage their trips",
-          },
-        ],
-      })
-    : copilotKitEndpoint({
-        url:
-          process.env.REMOTE_ACTION_URL || "http://localhost:8000/copilotkit",
-      });
+  // Allow using a deployed LangGraph agent for monitoring (LangSmith) by
+  // setting either the query param `lgcDeploymentUrl` or the env var
+  // `NEXT_PUBLIC_LGC_DEPLOYMENT_URL` / `LGC_DEPLOYMENT_URL`.
+  const deploymentUrl =
+    searchParams.get("lgcDeploymentUrl") ||
+    process.env.NEXT_PUBLIC_LGC_DEPLOYMENT_URL ||
+    process.env.LGC_DEPLOYMENT_URL;
+
+  const remoteEndpoint =
+    deploymentUrl && langsmithApiKey
+      ? langGraphPlatformEndpoint({
+          deploymentUrl,
+          langsmithApiKey,
+          agents: [
+            {
+              name: "travel",
+              description:
+                "This agent helps the user plan and manage their trips",
+            },
+          ],
+        })
+      : copilotKitEndpoint({
+          url:
+            process.env.NEXT_PUBLIC_COPILOTKIT_RUNTIME_URL ||
+            "http://localhost:8000/copilotkit",
+        });
 
   const runtime = new CopilotRuntime({
     remoteEndpoints: [remoteEndpoint],
