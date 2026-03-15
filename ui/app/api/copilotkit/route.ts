@@ -11,7 +11,9 @@ import {
 // const openai = new OpenAI();
 // const llmAdapter = new OpenAIAdapter({ openai } as any);
 const llmAdapter = new GroqAdapter({ model: "llama-3.3-70b-versatile" });
-const langsmithApiKey = process.env.LANGSMITH_API_KEY as string;
+// const langsmithApiKey = process.env.LANGSMITH_API_KEY as string;
+const langsmithApiKey =
+  process.env.LANGCHAIN_API_KEY || process.env.LANGSMITH_API_KEY;
 
 export const POST = async (req: NextRequest) => {
   const searchParams = req.nextUrl.searchParams;

@@ -23,7 +23,8 @@ dependencies = [
     "googlemaps",
     "html2text",
     "ormsgpack (>=1.12.2,<2.0.0)",
-    "langchain-groq (==0.2.5)"
+    "langchain-groq (==0.2.5)",
+    "langsmith (>=0.7.17,<0.8.0)"
 ]
 
 [tool.poetry.dependencies]

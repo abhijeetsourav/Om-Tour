@@ -6,6 +6,10 @@ from travel.state import AgentState, Trip, Place
 from copilotkit.langgraph import copilotkit_emit_message
 
 
+from langsmith import traceable
+
+
+@traceable
 async def trips_node(state: AgentState, config: RunnableConfig):  # pylint: disable=unused-argument
     """
     Lets the user know about the operations about to be performed on trips.
@@ -13,6 +17,7 @@ async def trips_node(state: AgentState, config: RunnableConfig):  # pylint: disa
     return state
 
 
+@traceable
 async def perform_trips_node(state: AgentState, config: RunnableConfig):
     """Execute trip operations"""
     ai_message = cast(AIMessage, state["messages"][-2])

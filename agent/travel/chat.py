@@ -1,19 +1,22 @@
+from schemas.trip_schema import TripPlan
+from langsmith import traceable
 import os
-from langchain_core.tools import tool
+import json
 from typing import cast
-from langchain_core.messages import AIMessage, ToolMessage
+
+from dotenv import load_dotenv
+from langchain_core.tools import tool
+from langchain_core.messages import AIMessage, ToolMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
+
+from langchain_groq import ChatGroq
+
 from travel.trips import add_trips, update_trips, delete_trips
 from travel.search import search_for_places
-from langchain_groq import ChatGroq
-from langchain_core.messages import SystemMessage
 from travel.state import AgentState
-import json
-from dotenv import load_dotenv
+from travel.format_trip import format_trip_for_chat
+
 load_dotenv()
-
-
-# from langchain_openai import ChatOpenAI
 
 groq_api_key = os.getenv("GROQ_API_KEY")
 
@@ -24,83 +27,167 @@ def select_trip(trip_id: str):
     return f"Selected trip {trip_id}"
 
 
-llm = ChatGroq(model="llama-3.3-70b-versatile",
-               temperature=0, api_key=groq_api_key)
-# llm = ChatOpenAI(model="gpt-4o")
+# Initialize LLM
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0,
+    api_key=groq_api_key
+)
+
 tools = [search_for_places, select_trip]
 
 
+def extract_json_block(text: str):
+    """
+    Extract JSON block from model output.
+    Handles cases where model adds text before/after JSON.
+    """
+
+    if not text:
+        return None
+
+    start = text.find("{")
+    end = text.rfind("}")
+
+    if start == -1 or end == -1:
+        return None
+
+    return text[start:end + 1]
+
+
+def format_if_trip_json(message_content: str) -> str:
+    """
+    If message_content contains TripPlan JSON, parse and format it.
+    Otherwise, return content unchanged.
+    """
+    from travel.format_trip import format_trip_for_chat
+    from schemas.trip_schema import TripPlan
+    json_block = extract_json_block(message_content)
+    if not json_block:
+        return message_content
+    try:
+        tripplan = TripPlan.parse_raw(json_block)
+        return format_trip_for_chat(tripplan)
+    except Exception:
+        return message_content
+
+
+@traceable
 async def chat_node(state: AgentState, config: RunnableConfig):
-    """Handle chat operations"""
-    # print("CHAT NODE CALLED")
+
     if not groq_api_key:
-        return {"messages": [AIMessage(content="Error: GROQ_API_KEY not set.")], "selected_trip_id": state.get("selected_trip_id", None), "trips": state.get("trips", [])}
+        return {
+            "messages": [AIMessage(content="Error: GROQ_API_KEY not set.")],
+            "selected_trip_id": state.get("selected_trip_id"),
+            "trips": state.get("trips", [])
+        }
+
     llm_with_tools = llm.bind_tools(
         [
             *tools,
             add_trips,
             update_trips,
             delete_trips,
-            select_trip,
+            select_trip
         ],
-        parallel_tool_calls=False,
+        parallel_tool_calls=False
     )
 
     system_message = f"""
-    You are an agent that plans trips and helps the user with planning and managing their trips.
-    If the user did not specify a location, you should ask them for a location.
-    
-    Plan the trips for the user, take their preferences into account if specified, but if they did not
-    specify any preferences, call the search_for_places tool to find places of interest, restaurants, and activities.
+You are Sarathi, an AI travel planner for Om Tours.
 
-    Unless the users prompt specifies otherwise, only use the first 10 results from the search_for_places tool relevant
-    to the trip.
+Help users plan trips and manage itineraries.
 
-    When you add or edit a trip, you don't need to summarize what you added. Just give a high level summary of the trip
-    and why you planned it that way.
-    
-    When you create or update a trip, you should set it as the selected trip.
-    If you delete a trip, try to select another trip.
+Rules:
+- Ask for location if missing.
+- Use search_for_places if preferences are not provided.
+- Use only the top 10 relevant search results.
+- When adding/updating trips, set them as selected.
 
-    If an operation is cancelled by the user, DO NOT try to perform the operation again. Just ask what the user would like to do now
-    instead.
+Current trips:
+{json.dumps(state.get('trips', []))}
 
-    IMPORTANT: When calling add_trips or update_trips:
-    - Always include a 'zoom' level (e.g., 13 for city level, 15 for detailed)
-    - Always include a 'description' for each place, even if empty
-    - All other required fields (id, name, address, latitude, longitude, rating) must be included
+FINAL OUTPUT RULE:
+After all tool calls complete, return ONLY JSON matching this schema.
 
-    Current trips: {json.dumps(state.get('trips', []))}
-    """
+TripPlan:
+{{
+ city: string
+ days: number
+ itinerary: [
+   {{
+     day: number,
+     activities: [
+       {{
+         name: string
+         description: string
+         location: string
+         estimated_cost: number
+       }}
+     ]
+   }}
+ ]
+ estimated_budget: number
+ confidence: number
+}}
 
-    # calling ainvoke instead of invoke is essential to get streaming to work properly on tool calls.
+Return ONLY JSON.
+"""
+
     try:
         response = await llm_with_tools.ainvoke(
             [
                 SystemMessage(content=system_message),
                 *state["messages"]
             ],
-            config=config,
+            config=config
         )
     except Exception as e:
-        return {"messages": [AIMessage(content=f"Error: {str(e)}")], "selected_trip_id": state.get("selected_trip_id", None), "trips": state.get("trips", [])}
-
-    print("LLM Response:", response)
+        return {
+            "messages": [AIMessage(content=f"Error: {str(e)}")],
+            "selected_trip_id": state.get("selected_trip_id"),
+            "trips": state.get("trips", [])
+        }
 
     ai_message = cast(AIMessage, response)
 
+    print("LLM content:", ai_message.content)
+    print("Tool calls:", ai_message.tool_calls)
+
+    # -------------------------------------------------
+    # STEP 1 — HANDLE TOOL CALLS FIRST
+    # -------------------------------------------------
+
     if ai_message.tool_calls:
+
         if ai_message.tool_calls[0]["name"] == "select_trip":
             return {
                 "selected_trip_id": ai_message.tool_calls[0]["args"].get("trip_id", ""),
-                "messages": [ai_message, ToolMessage(
-                    tool_call_id=ai_message.tool_calls[0]["id"],
-                    content="Trip selected."
-                )]
+                "messages": [
+                    ai_message,
+                    ToolMessage(
+                        tool_call_id=ai_message.tool_calls[0]["id"],
+                        content="Trip selected."
+                    )
+                ]
             }
 
+        return {
+            "messages": [ai_message],
+            "selected_trip_id": state.get("selected_trip_id"),
+            "trips": state.get("trips", [])
+        }
+
+    # -------------------------------------------------
+    # STEP 2 — PARSE FINAL RESPONSE
+    # -------------------------------------------------
+
+    raw_content = ai_message.content
+
+    formatted_content = format_if_trip_json(raw_content)
+
     return {
-        "messages": [response],
-        "selected_trip_id": state.get("selected_trip_id", None),
+        "messages": [AIMessage(content=formatted_content)],
+        "selected_trip_id": state.get("selected_trip_id"),
         "trips": state.get("trips", [])
     }

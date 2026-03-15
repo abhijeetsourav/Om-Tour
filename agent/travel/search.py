@@ -2,6 +2,7 @@
 The search node is responsible for searching the internet for information.
 """
 
+from langsmith import traceable
 import os
 import json
 import googlemaps
@@ -25,6 +26,7 @@ if GOOGLE_MAPS_API_KEY:
     gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
 
 
+@traceable
 async def search_node(state: AgentState, config: RunnableConfig):
     """
     The search node is responsible for searching the for places.
