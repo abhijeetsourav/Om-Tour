@@ -1,6 +1,8 @@
-from typing import Literal,List, Optional
+from typing import List, Optional
 from typing_extensions import TypedDict
 from langgraph.graph import MessagesState
+from schemas.trip_schema import TripPlan
+
 
 class Place(TypedDict):
     """A place."""
@@ -12,14 +14,16 @@ class Place(TypedDict):
     rating: float
     description: Optional[str]
 
+
 class Trip(TypedDict):
     """A trip."""
     id: str
     name: str
     center_latitude: float
     center_longitude: float
-    zoom: int # 13 for city, 15 for airport
+    zoom: int  # 13 for city, 15 for airport
     places: List[Place]
+
 
 class SearchProgress(TypedDict):
     """The progress of a search."""
@@ -27,10 +31,12 @@ class SearchProgress(TypedDict):
     results: list[str]
     done: bool
 
+
 class PlanningProgress(TypedDict):
     """The progress of a planning."""
     trip: Trip
     done: bool
+
 
 class AgentState(MessagesState):
     """The state of the agent."""
@@ -38,3 +44,5 @@ class AgentState(MessagesState):
     trips: List[Trip]
     search_progress: List[SearchProgress]
     planning_progress: List[PlanningProgress]
+    tripplan: Optional[TripPlan] = None
+    critic_reject: bool = False

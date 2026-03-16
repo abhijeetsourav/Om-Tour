@@ -45,9 +45,17 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
 
   useCopilotChatSuggestions(
     {
-      instructions: `Offer the user actionable suggestions on their last message, current trips and selected trip.\n ${state.selected_trip_id} \n ${JSON.stringify(state.trips)}`,
-      minSuggestions: 1,
-      maxSuggestions: 2,
+      instructions: `Only offer actionable suggestions when the user explicitly asks for help, recommendations, or next steps (e.g., "What should I do next?", "Help me plan", "Give me suggestions").
+      
+Do NOT offer suggestions after you've already provided a complete trip plan or itinerary response.
+
+Current context:
+- Selected trip: ${state.selected_trip_id}
+- Available trips: ${JSON.stringify(state.trips)}
+
+Only suggest if the user is asking for guidance or recommendations, not to promote features or encourage actions they didn't ask for.`,
+      minSuggestions: 0,
+      maxSuggestions: 1,
     },
     [state.trips],
   );

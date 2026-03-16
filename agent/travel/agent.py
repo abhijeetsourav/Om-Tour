@@ -11,6 +11,7 @@ from travel.trips import trips_node
 from travel.chat import chat_node
 from travel.search import search_node
 from travel.trips import perform_trips_node
+from travel.critic import critic_node
 from langsmith import traceable
 from travel.state import AgentState
 
@@ -38,18 +39,32 @@ def route(state: AgentState):
     if messages and isinstance(messages[-1], ToolMessage):
         return "chat_node"
 
-    return END
+    return "critic_node"
+
+
+def critic_route(state: AgentState):
+    """Route after the critic node based on validation result."""
+    if state.get("critic_reject"):
+        # Validation failed, return to chat node for regeneration
+        return "chat_node"
+    else:
+        # Validation passed, go to end
+        return END
 
 
 graph_builder = StateGraph(AgentState)
 
 graph_builder.add_node("chat_node", traceable(chat_node))
+graph_builder.add_node("critic_node", traceable(critic_node))
 graph_builder.add_node("trips_node", traceable(trips_node))
 graph_builder.add_node("search_node", traceable(search_node))
 graph_builder.add_node("perform_trips_node", traceable(perform_trips_node))
 
 graph_builder.add_conditional_edges(
-    "chat_node", route, ["search_node", "chat_node", "trips_node", END])
+    "chat_node", route, ["search_node", "chat_node", "trips_node", "critic_node"])
+
+graph_builder.add_conditional_edges(
+    "critic_node", critic_route, ["chat_node", END])
 
 graph_builder.add_edge(START, "chat_node")
 graph_builder.add_edge("search_node", "chat_node")
