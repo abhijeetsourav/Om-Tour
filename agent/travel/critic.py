@@ -30,9 +30,10 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Initialize Critic LLM client
+# Llama-3.3-70B-Instruct: Excellent reasoning and critique capabilities
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 HUGGINGFACE_CRITIC_MODEL = os.getenv(
-    "HUGGINGFACE_CRITIC_MODEL", "Qwen/Qwen2.5-72B-Instruct"
+    "HUGGINGFACE_CRITIC_MODEL", "meta-llama/Llama-3.3-70B-Instruct"
 )
 USE_LLM_CRITIC = os.getenv("USE_LLM_CRITIC", "false").lower() in ("1", "true")
 
@@ -75,24 +76,26 @@ async def evaluate_query_reasonableness(query: str) -> Dict[str, Any]:
         # Fallback: allow query to proceed
         return {"reasonable": True, "reason": "Query validation skipped (no API key)"}
 
-    query_validation_prompt = """You are a travel feasibility reviewer.
+    query_validation_prompt = """You are a travel feasibility reviewer with expertise in geography and tourism.
 
-Determine if the following user request represents a reasonable real-world travel plan that is possible to execute.
+Evaluate the following user travel request for feasibility and authenticity.
 
-Consider and assess:
-- **Destination Realism**: Does the destination actually exist on Earth? Is it a real, geographically valid location?
-- **Tourism Feasibility**: Can tourists realistically visit this destination? Are there commercial flights, hotels, or tourism infrastructure?
-- **Travel Safety**: Are there major safety, health, or political issues that would prevent tourism?
+Assess:
+1. **Destination Reality**: Does this destination actually exist on Earth?
+2. **Tourism Accessibility**: Can tourists visit? Is infrastructure available?
+3. **Safety/Feasibility**: Are there insurmountable barriers (war, natural disaster) currently?
 
-Return a JSON object with this exact format:
+Respond with JSON only:
 {
-    "reasonable": true or false,
-    "reason": "Short explanation of your assessment"
+    "reasonable": true|false,
+    "reason": "Clear explanation"
 }
 
-If the destination is fictional (e.g., Mars, Atlantis, Narnia) or unrealistic (e.g., "a place that doesn't exist"), set reasonable to false.
-If the query is vague but could be a real place, set it to true.
-Return ONLY valid JSON, no other text."""
+Rules:
+- Fictional places (Mars, Atlantis, etc.) → reasonable: false
+- Real but obscure places → reasonable: true
+- Vague but plausible → reasonable: true
+Return ONLY JSON, no other text."""
 
     try:
         completion = critic_client.chat.completions.create(

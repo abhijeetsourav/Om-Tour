@@ -24,11 +24,10 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
-# Use a reliable structured-output model by default for planner tasks.
-# This model is known for good JSON output, instruction-following, and is supported by the
-# current Hugging Face account (chat completions endpoint).
+# Qwen2.5-7B-Instruct: Optimized for structured output and instruction-following
+# Excellent at generating JSON output with clear formatting
 HUGGINGFACE_MODEL = os.getenv(
-    "HUGGINGFACE_MODEL", "meta-llama/Llama-3.1-8B-Instruct"
+    "HUGGINGFACE_MODEL", "Qwen/Qwen2.5-7B-Instruct"
 )
 
 client = InferenceClient(api_key=HUGGINGFACE_API_KEY)
@@ -211,6 +210,7 @@ async def planner_node(state: AgentState, config: RunnableConfig):
     critic_feedback = state.get("critic_feedback", {})
     
     # Base system message (strict output contract)
+    # Optimized for Qwen2.5-7B-Instruct
     trips_json = json.dumps(state.get("trips", []))
     system_message = (
         "You are Sarathi, an AI travel planner for Om Tours.\n\n"
@@ -218,77 +218,36 @@ async def planner_node(state: AgentState, config: RunnableConfig):
         "CRITICAL INSTRUCTIONS FOR TRIP PLANNING:\n\n"
         "1. DESTINATION VALIDATION:\n"
         "   - Accept all real, Earth-based destinations (cities, regions, countries, islands, etc.)\n"
-        "   - If a destination name appears to have a spelling error but is clearly a real place, CORRECT the spelling and proceed with planning\n"
-        "   - Examples: \"lakshdweep\" → Lakshadweep, \"mumbai\" → Mumbai\n"
         "   - ONLY refuse completely fictional/mythical/unrealistic places (Mars, Atlantis, fictional worlds, etc.)\n\n"
-        "2. TRIP DURATION AND ACTIVITY LIMITS:\n"
-        "   - If the user does not specify the number of days, ASK THE USER TO CLARIFY instead of guessing\n"
-        "   - Do NOT assume a default trip duration (e.g., 5 days, 7 days)\n"
-        "   - CRITICAL: Reject unrealistic activity requests:\n"
-        "     * If user asks for >8 activities per day, REFUSE and explain why\n"
-        "     * Example: \"You requested 20 visits per day. This is physically impossible due to travel time, \n"
-        "       entrance queues, and distance between attractions. I will create a realistic itinerary with 5-6 \n"
-        "       attractions per day instead.\"\n"
-        "   - Example response for missing days: \"How many days would you like to spend in {destination}?\"\n\n"
-        "3. ACTIVITY DENSITY RULES:\n"
+        "2. TRIP DURATION:\n"
+        "   - If the user does not specify days, ASK FOR CLARIFICATION\n"
+        "   - Do NOT assume a default duration\n\n"
+        "3. ACTIVITY LIMITS:\n"
         "   - Relaxed trip: 3-4 activities per day\n"
         "   - Busy itinerary: 5-6 activities per day\n"
-        "   - Maximum realistic: 7-8 activities per day (only for very well-connected destinations)\n"
-        "   - IMPOSSIBLE: >8 activities per day (physically impossible due to travel time and fatigue)\n"
-        "   - If user requests >8/day, politely refuse and generate a realistic itinerary with 5-6/day instead\n\n"
-        "4. OUTPUT CONTRACT (STRICT - CRITICAL FOR PARSING):\n"
-        "   - Your response MUST start with a JSON object and contain NOTHING else\n"
-        "   - NO introductory text, NO explanations, NO markdown code blocks\n"
-        "   - The JSON object MUST be the very first character of your response\n"
-        "   - Example valid response: {\"tripplan\": {...}}\n"
-        "   - Example INVALID: Here is your trip plan: {\"tripplan\": {...}}\n"
-        "   - The response MUST conform to the following schema (only these top-level keys):\n"
-        "     * \"tripplan\": TripPlan object (see schema below)\n"
-        "     * \"action\": {\"type\": ..., \"parameters\": {...}} (for tool calls)\n"
-        "     * \"error\": {\"code\": ..., \"message\": ..., \"details\"?: {...}} (for failures)\n"
-        "   - Only one of \"tripplan\", \"action\", or \"error\" may be present. Everything else is invalid.\n\n"
-        "5. TRIPPLAN (REAL DESTINATIONS):\n"
-        "   - Use the TripPlan schema below.\n"
-        "   - If any required information is missing (e.g., days), return an \"error\" object asking for clarification.\n"
-        "   - Do not return plain text responses for trips.\n\n"
-        "6. TOOL ACTIONS:\n"
-        "   - If you need external data (search places) or trip CRUD operations, return an \"action\" object.\n"
-        "   - Allowed action types:\n"
-        "     - \"search_places\" with parameters {\"queries\": [string]}\n"
-        "     - \"add_trips\" with parameters {\"trips\": [Trip objects]}\n"
-        "     - \"update_trips\" with parameters {\"trips\": [Trip objects]}\n"
-        "     - \"delete_trips\" with parameters {\"trip_ids\": [string]}\n"
-        "     - \"select_trip\" with parameters {\"trip_id\": string}\n\n"
-        "7. ERROR OBJECT:\n"
-        "   - Return {\"error\": {\"code\": \"...\", \"message\": \"...\", \"details\": {...}}}\n"
-        "   - Use error codes like: \"MISSING_DAYS\", \"UNREALISTIC_REQUEST\", \"INVALID_OUTPUT\", \"NOT_A_TRIP_QUERY\".\n\n"
-        "8. CONFIDENCE SCORING:\n"
-        "   - Return confidence as a decimal between 0.0 and 1.0.\n"
-        "   - Higher confidence for well-known destinations, lower for obscure ones.\n"
-        "   - All activity costs should be realistic (not all $0).\n\n"
-        "Current trips:\n" + trips_json + "\n\n"
-        "TripPlan JSON schema (for REAL destinations only):\n"
+        "   - Maximum: 7-8 activities per day\n"
+        "   - IMPOSSIBLE: >8 activities per day. Refuse unrealistic requests.\n\n"
+        "4. OUTPUT CONTRACT (CRITICAL):\n"
+        "   - Response MUST be PURE JSON starting with { and ending with }\n"
+        "   - NO introductory text, NO explanations, NO markdown\n"
+        "   - JSON MUST be the very first character\n"
+        "   - Response structure must be ONE of:\n"
+        "     * {\"tripplan\": {...}}\n"
+        "     * {\"action\": {\"type\": ..., \"parameters\": {...}}}\n"
+        "     * {\"error\": {\"code\": ..., \"message\": ...}}\n\n"
+        "5. TRIPPLAN SCHEMA:\n"
         "{\n"
         "    \"city\": string,\n"
         "    \"days\": number,\n"
-        "    \"itinerary\": [\n"
-        "        {\n"
-        "            \"day\": number,\n"
-        "            \"activities\": [\n"
-        "                {\n"
-        "                    \"name\": string,\n"
-        "                    \"description\": string,\n"
-        "                    \"location\": string,\n"
-        "                    \"estimated_cost\": number\n"
-        "                }\n"
-        "            ]\n"
-        "        }\n"
-        "    ],\n"
+        "    \"itinerary\": [{\"day\": number, \"activities\": [{\"name\": string, \"description\": string, \"location\": string, \"estimated_cost\": number}]}],\n"
         "    \"estimated_budget\": number,\n"
-        "    \"confidence\": number (0.0 to 1.0)\n"
-        "}\n"
-        "\n"
-        "REMINDER: Your response must be pure JSON starting with { and ending with }. No other text.\n"
+        "    \"confidence\": number\n"
+        "}\n\n"
+        "6. ACTION TYPES:\n"
+        "   - \"search_places\", \"add_trips\", \"update_trips\", \"delete_trips\", \"select_trip\"\n\n"
+        "7. ERROR CODES:\n"
+        "   - \"MISSING_DAYS\", \"UNREALISTIC_REQUEST\", \"INVALID_DESTINATION\", \"NOT_A_TRIP_QUERY\"\n\n"
+        "Current trips: " + trips_json + "\n"
     )
 
     # Add regeneration feedback if this is a retry
