@@ -34,7 +34,7 @@
     "PYTHONUNBUFFERED": "1"
   },
 
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/post-create.sh",
 
   "customizations": {
     "vscode": {

@@ -19,17 +19,17 @@ async def trips_node(state: AgentState, config: RunnableConfig):  # pylint: disa
 
 @traceable
 async def perform_trips_node(state: AgentState, config: RunnableConfig):
-    """Execute trip operations"""
-    ai_message = cast(AIMessage, state["messages"][-2])
-    tool_message = cast(ToolMessage, state["messages"][-1])
+    """Execute trip operations based on a structured action."""
+    action = state.get("action") or {}
+    action_type = action.get("type")
+    params = action.get("parameters", {})
 
-    if tool_message.content == "CANCEL":
-        state["messages"].append(
-            AIMessage(content="Cancelled the trip operation."))
+    # Reset action after consuming it
+    state["action"] = None
+
+    if action_type == "cancel":
+        state["messages"].append(AIMessage(content="Cancelled the trip operation."))
         await copilotkit_emit_message(config, "Cancelled the trip operation.")
-        return state
-
-    if not isinstance(ai_message, AIMessage) or not ai_message.tool_calls:
         return state
 
     action_handlers = {
@@ -42,14 +42,10 @@ async def perform_trips_node(state: AgentState, config: RunnableConfig):
     if not state.get("trips"):
         state["trips"] = []
 
-    for tool_call in ai_message.tool_calls:
-        action = tool_call["name"]
-        args = tool_call.get("args", {})
-
-        if action in action_handlers:
-            message = action_handlers[action](args)
-            state["messages"].append(message)
-            await copilotkit_emit_message(config, message.content)
+    if action_type in action_handlers:
+        message = action_handlers[action_type](params)
+        state["messages"].append(message)
+        await copilotkit_emit_message(config, message.content)
 
     return state
 

@@ -1,0 +1,132 @@
+{
+  "test_queries": [
+    {
+      "id": "realistic_1",
+      "category": "REALISTIC",
+      "query": "plan a 3 day trip to rome",
+      "expected_outcome": "should accept",
+      "expected_activities_per_day": 4,
+      "is_trip_query": true
+    },
+    {
+      "id": "realistic_2",
+      "category": "REALISTIC",
+      "query": "5 day trip to manali",
+      "expected_outcome": "should accept",
+      "expected_activities_per_day": 5,
+      "is_trip_query": true
+    },
+    {
+      "id": "realistic_3",
+      "category": "REALISTIC",
+      "query": "2 day trip to agra",
+      "expected_outcome": "should accept",
+      "expected_activities_per_day": 4,
+      "is_trip_query": true
+    },
+    {
+      "id": "realistic_4",
+      "category": "REALISTIC",
+      "query": "plan 4 day trip to paris with 5 visits per day",
+      "expected_outcome": "should accept",
+      "expected_activities_per_day": 5,
+      "is_trip_query": true
+    },
+    {
+      "id": "realistic_5",
+      "category": "REALISTIC",
+      "query": "suggest a 6 day itinerary for delhi",
+      "expected_outcome": "should accept",
+      "expected_activities_per_day": 5,
+      "is_trip_query": true
+    },
+    {
+      "id": "unrealistic_1",
+      "category": "UNREALISTIC",
+      "query": "trip to mars",
+      "expected_outcome": "should reject (fictional destination)",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "unrealistic_2",
+      "category": "UNREALISTIC",
+      "query": "vacation at a nuclear weapons base",
+      "expected_outcome": "should reject (inaccessible)",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "unrealistic_3",
+      "category": "UNREALISTIC",
+      "query": "2 day trip to paris with 50 activities per day",
+      "expected_outcome": "should reject (too many activities)",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "unrealistic_4",
+      "category": "UNREALISTIC",
+      "query": "plan a trip to atlantis",
+      "expected_outcome": "should reject (fictional)",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "unrealistic_5",
+      "category": "UNREALISTIC",
+      "query": "3 day trip to london with 25 activities each day",
+      "expected_outcome": "should reject (excessive activities)",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "edge_case_1",
+      "category": "EDGE_CASES",
+      "query": "hi",
+      "expected_outcome": "should respond with greeting",
+      "expected_activities_per_day": 0,
+      "is_trip_query": false
+    },
+    {
+      "id": "edge_case_2",
+      "category": "EDGE_CASES",
+      "query": "suggest places to visit",
+      "expected_outcome": "should ask for destination",
+      "expected_activities_per_day": 0,
+      "is_trip_query": false
+    },
+    {
+      "id": "edge_case_3",
+      "category": "EDGE_CASES",
+      "query": "weekend trip near bangalore",
+      "expected_outcome": "should ask for days specification",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    },
+    {
+      "id": "edge_case_4",
+      "category": "EDGE_CASES",
+      "query": "hello, how are you?",
+      "expected_outcome": "should respond with greeting",
+      "expected_activities_per_day": 0,
+      "is_trip_query": false
+    },
+    {
+      "id": "edge_case_5",
+      "category": "EDGE_CASES",
+      "query": "what are some famous landmarks?",
+      "expected_outcome": "should respond informatively",
+      "expected_activities_per_day": 0,
+      "is_trip_query": false
+    },
+    {
+      "id": "edge_case_6",
+      "category": "EDGE_CASES",
+      "query": "plan trip to goa",
+      "expected_outcome": "should ask for days",
+      "expected_activities_per_day": 0,
+      "is_trip_query": true
+    }
+  ]
+}
