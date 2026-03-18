@@ -3,12 +3,12 @@ import logging
 from travel.state import AgentState
 from copilotkit.langgraph import copilotkit_emit_state, copilotkit_customize_config
 from langchain.tools import tool
-from langchain_core.messages import AIMessage, ToolMessage
+from langchain_core.messages import ToolMessage
 from langchain_core.runnables import RunnableConfig
-from typing import cast
 import googlemaps
 import json
 import os
+import uuid
 
 
 def format_places(places):
@@ -72,13 +72,19 @@ if GOOGLE_MAPS_API_KEY:
 @traceable
 async def search_node(state: AgentState, config: RunnableConfig):
     """
-    The search node is responsible for searching the for places.
+    The search node is responsible for searching for places.
     """
     if not gmaps:
-        state["messages"].append(ToolMessage(tool_call_id=state["messages"]
-                                 [-1].tool_calls[0]["id"], content="Error: Google Maps API key missing."))
+        state["messages"].append(ToolMessage(content="Error: Google Maps API key missing."))
+        state["action"] = None
         return state
-    ai_message = cast(AIMessage, state["messages"][-1])
+
+    # Extract action parameters from planner response
+    action = state.get("action") or {}
+    queries = action.get("parameters", {}).get("queries", [])
+
+    # Reset action after consuming it
+    state["action"] = None
 
     config = copilotkit_customize_config(
         config,
@@ -90,7 +96,6 @@ async def search_node(state: AgentState, config: RunnableConfig):
     )
 
     state["search_progress"] = state.get("search_progress", [])
-    queries = ai_message.tool_calls[0]["args"]["queries"]
 
     for query in queries:
         state["search_progress"].append({
@@ -143,8 +148,9 @@ async def search_node(state: AgentState, config: RunnableConfig):
     await copilotkit_emit_state(config, state)
 
     formatted_places = format_places(unique_filtered_places)
+    tool_call_id = str(uuid.uuid4())
     state["messages"].append(ToolMessage(
-        tool_call_id=ai_message.tool_calls[0]["id"],
+        tool_call_id=tool_call_id,
         content=f"Results: {json.dumps(formatted_places)}"
     ))
 

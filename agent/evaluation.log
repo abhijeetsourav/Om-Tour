@@ -1,0 +1,1442 @@
+2026-03-16 21:09:31,183 - __main__ - INFO - 
+############################################################
+2026-03-16 21:09:31,183 - __main__ - INFO - SARATHI TRAVEL AGENT EVALUATION
+2026-03-16 21:09:31,183 - __main__ - INFO - ############################################################
+2026-03-16 21:09:31,183 - __main__ - INFO - Starting evaluation with 16 test cases
+2026-03-16 21:09:31,183 - __main__ - INFO - 
+[1/16]
+2026-03-16 21:09:31,184 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,184 - __main__ - INFO - Evaluating: realistic_1 (REALISTIC)
+2026-03-16 21:09:31,184 - __main__ - INFO - Query: plan a 3 day trip to rome
+2026-03-16 21:09:31,234 - __main__ - ERROR - ❌ Error on query realistic_1: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '179db474-c808-9dac-8506-15e17ee92d98'
+2026-03-16 21:09:31,240 - __main__ - INFO - 
+[2/16]
+2026-03-16 21:09:31,240 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,240 - __main__ - INFO - Evaluating: realistic_2 (REALISTIC)
+2026-03-16 21:09:31,240 - __main__ - INFO - Query: 5 day trip to manali
+2026-03-16 21:09:31,249 - __main__ - ERROR - ❌ Error on query realistic_2: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '129766b5-50c2-3ef8-22d7-b412adb71ec4'
+2026-03-16 21:09:31,252 - __main__ - INFO - 
+[3/16]
+2026-03-16 21:09:31,253 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,253 - __main__ - INFO - Evaluating: realistic_3 (REALISTIC)
+2026-03-16 21:09:31,253 - __main__ - INFO - Query: 2 day trip to agra
+2026-03-16 21:09:31,264 - __main__ - ERROR - ❌ Error on query realistic_3: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '0eb745f7-9c4a-f1d5-56be-e743ab418059'
+2026-03-16 21:09:31,265 - __main__ - INFO - 
+[4/16]
+2026-03-16 21:09:31,266 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,266 - __main__ - INFO - Evaluating: realistic_4 (REALISTIC)
+2026-03-16 21:09:31,266 - __main__ - INFO - Query: plan 4 day trip to paris with 5 visits per day
+2026-03-16 21:09:31,273 - __main__ - ERROR - ❌ Error on query realistic_4: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'ddab4dd7-370c-2f6c-3557-2b9deff52add'
+2026-03-16 21:09:31,274 - __main__ - INFO - 
+[5/16]
+2026-03-16 21:09:31,275 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,275 - __main__ - INFO - Evaluating: realistic_5 (REALISTIC)
+2026-03-16 21:09:31,275 - __main__ - INFO - Query: suggest a 6 day itinerary for delhi
+2026-03-16 21:09:31,282 - __main__ - ERROR - ❌ Error on query realistic_5: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '42f01668-47da-f377-39ea-9c1c6bfd9e06'
+2026-03-16 21:09:31,284 - __main__ - INFO - 
+[6/16]
+2026-03-16 21:09:31,284 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,285 - __main__ - INFO - Evaluating: unrealistic_1 (UNREALISTIC)
+2026-03-16 21:09:31,285 - __main__ - INFO - Query: trip to mars
+2026-03-16 21:09:31,291 - __main__ - ERROR - ❌ Error on query unrealistic_1: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'dd9205e9-f13f-c2ac-e6bf-2e7c49fc83c4'
+2026-03-16 21:09:31,293 - __main__ - INFO - 
+[7/16]
+2026-03-16 21:09:31,293 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,294 - __main__ - INFO - Evaluating: unrealistic_2 (UNREALISTIC)
+2026-03-16 21:09:31,294 - __main__ - INFO - Query: vacation at a nuclear weapons base
+2026-03-16 21:09:31,307 - __main__ - ERROR - ❌ Error on query unrealistic_2: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '42371fe0-b127-1f3a-8b2f-2568dec370ed'
+2026-03-16 21:09:31,316 - __main__ - INFO - 
+[8/16]
+2026-03-16 21:09:31,318 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,318 - __main__ - INFO - Evaluating: unrealistic_3 (UNREALISTIC)
+2026-03-16 21:09:31,318 - __main__ - INFO - Query: 2 day trip to paris with 50 activities per day
+2026-03-16 21:09:31,337 - __main__ - ERROR - ❌ Error on query unrealistic_3: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '8031da95-ff39-349d-d181-e4ce474f65b5'
+2026-03-16 21:09:31,338 - __main__ - INFO - 
+[9/16]
+2026-03-16 21:09:31,338 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,338 - __main__ - INFO - Evaluating: unrealistic_4 (UNREALISTIC)
+2026-03-16 21:09:31,338 - __main__ - INFO - Query: plan a trip to atlantis
+2026-03-16 21:09:31,363 - __main__ - ERROR - ❌ Error on query unrealistic_4: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '4741683a-4dbf-26ef-39b6-c4c9744f2d59'
+2026-03-16 21:09:31,364 - __main__ - INFO - 
+[10/16]
+2026-03-16 21:09:31,365 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,365 - __main__ - INFO - Evaluating: unrealistic_5 (UNREALISTIC)
+2026-03-16 21:09:31,365 - __main__ - INFO - Query: 3 day trip to london with 25 activities each day
+2026-03-16 21:09:31,377 - __main__ - ERROR - ❌ Error on query unrealistic_5: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'c2817bd5-9dec-fe56-f908-1fd54734ac31'
+2026-03-16 21:09:31,378 - __main__ - INFO - 
+[11/16]
+2026-03-16 21:09:31,378 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,379 - __main__ - INFO - Evaluating: edge_case_1 (EDGE_CASES)
+2026-03-16 21:09:31,379 - __main__ - INFO - Query: hi
+2026-03-16 21:09:31,386 - __main__ - ERROR - ❌ Error on query edge_case_1: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'a900b7d0-87fc-803b-8c88-a77d52d67d66'
+2026-03-16 21:09:31,388 - __main__ - INFO - 
+[12/16]
+2026-03-16 21:09:31,389 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,389 - __main__ - INFO - Evaluating: edge_case_2 (EDGE_CASES)
+2026-03-16 21:09:31,390 - __main__ - INFO - Query: suggest places to visit
+2026-03-16 21:09:31,398 - __main__ - ERROR - ❌ Error on query edge_case_2: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '910c09ec-e322-504f-5d48-f9b71057bb1c'
+2026-03-16 21:09:31,401 - __main__ - INFO - 
+[13/16]
+2026-03-16 21:09:31,401 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,401 - __main__ - INFO - Evaluating: edge_case_3 (EDGE_CASES)
+2026-03-16 21:09:31,401 - __main__ - INFO - Query: weekend trip near bangalore
+2026-03-16 21:09:31,410 - __main__ - ERROR - ❌ Error on query edge_case_3: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '0e752b43-1efe-8495-fdd4-ac7b84b99008'
+2026-03-16 21:09:31,412 - __main__ - INFO - 
+[14/16]
+2026-03-16 21:09:31,412 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,413 - __main__ - INFO - Evaluating: edge_case_4 (EDGE_CASES)
+2026-03-16 21:09:31,414 - __main__ - INFO - Query: hello, how are you?
+2026-03-16 21:09:31,429 - __main__ - ERROR - ❌ Error on query edge_case_4: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'ad327c58-b069-64b8-e2c4-e150ba20db16'
+2026-03-16 21:09:31,430 - __main__ - INFO - 
+[15/16]
+2026-03-16 21:09:31,430 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,430 - __main__ - INFO - Evaluating: edge_case_5 (EDGE_CASES)
+2026-03-16 21:09:31,431 - __main__ - INFO - Query: what are some famous landmarks?
+2026-03-16 21:09:31,437 - __main__ - ERROR - ❌ Error on query edge_case_5: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id '11649568-6795-a25e-3be7-25075cda512a'
+2026-03-16 21:09:31,438 - __main__ - INFO - 
+[16/16]
+2026-03-16 21:09:31,439 - __main__ - INFO - 
+============================================================
+2026-03-16 21:09:31,439 - __main__ - INFO - Evaluating: edge_case_6 (EDGE_CASES)
+2026-03-16 21:09:31,439 - __main__ - INFO - Query: plan trip to goa
+2026-03-16 21:09:31,444 - __main__ - ERROR - ❌ Error on query edge_case_6: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 196, in run_query
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.11.7/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 283, in _invoke_graph
+    result = graph.invoke(initial_state, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2683, in invoke
+    for chunk in self.stream(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 2331, in stream
+    for _ in runner.tick(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 146, in tick
+    run_with_retry(
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 606, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.cache/pypoetry/virtualenvs/travel-GniyaVVG-py3.11/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 319, in invoke
+    raise TypeError(
+TypeError: No synchronous function provided to "query_validator_node".
+Either initialize with a synchronous function or invoke via the async API (ainvoke, astream, etc.)
+During task with name 'query_validator_node' and id 'bddb2c92-8d39-dc35-c9ec-aab5d6641841'
+2026-03-16 21:09:31,448 - __main__ - INFO - 
+✓ Report saved to: /workspaces/Om-Tour/agent/evaluation/evaluation_report.json
+2026-03-16 21:14:35,778 - __main__ - INFO - 
+############################################################
+2026-03-16 21:14:35,780 - __main__ - INFO - SARATHI TRAVEL AGENT EVALUATION
+2026-03-16 21:14:35,780 - __main__ - INFO - ############################################################
+2026-03-16 21:14:35,780 - __main__ - INFO - Starting evaluation with 16 test cases
+2026-03-16 21:14:35,780 - __main__ - INFO - 
+[1/16]
+2026-03-16 21:14:35,780 - __main__ - INFO - 
+============================================================
+2026-03-16 21:14:35,780 - __main__ - INFO - Evaluating: realistic_1 (REALISTIC)
+2026-03-16 21:14:35,780 - __main__ - INFO - Query: plan a 3 day trip to rome
+2026-03-16 21:14:35,826 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan a 3 day trip to rome
+2026-03-16 21:14:38,227 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:38,228 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Rome is a real city with extensive tourism infrastructure and is safe for visitors."
+}
+2026-03-16 21:14:38,228 - travel.critic - INFO - Query validation result: reasonable=True, reason=Rome is a real city with extensive tourism infrastructure and is safe for visitors.
+2026-03-16 21:14:38,228 - travel.query_validator - INFO - Trip query validation passed: Rome is a real city with extensive tourism infrastructure and is safe for visitors.
+2026-03-16 21:14:42,101 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:42,102 - travel.planner - INFO - Planner LLM output: {
+    "city": "Rome",
+    "days": 3,
+    "itinerary": [
+        {
+            "day": 1,
+            ...
+2026-03-16 21:14:42,102 - travel.planner - INFO - TripPlan parsed successfully for: Rome
+2026-03-16 21:14:42,105 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:14:42,110 - travel.critic - INFO - ============================================================
+2026-03-16 21:14:42,111 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-16 21:14:42,111 - travel.critic - INFO - ============================================================
+2026-03-16 21:14:42,111 - travel.critic - INFO - Validating TripPlan for city: Rome
+2026-03-16 21:14:42,111 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-16 21:14:42,112 - travel.critic - INFO - Running rule-based validation...
+2026-03-16 21:14:42,112 - travel.critic - INFO - Validating TripPlan: Rome, 3 days
+2026-03-16 21:14:42,112 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-16 21:14:42,112 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-16 21:14:42,112 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-16 21:14:42,112 - travel.critic - ERROR - Cost validation FAILED: 6/9 activities have $0 cost
+2026-03-16 21:14:42,112 - travel.critic - ERROR - ❌ Cost validation FAILED with 1 issues
+2026-03-16 21:14:42,112 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-16 21:14:42,112 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-16 21:14:42,112 - travel.critic - WARNING - ❌ RULE VALIDATION FAILED
+2026-03-16 21:14:42,112 - travel.critic - WARNING - Rule validation issues:
+2026-03-16 21:14:42,112 - travel.critic - WARNING -   - Cost validation issue: 6 of 9 activities have $0 estimated cost. This appears to be placeholder data. All major attractions should have realistic pricing (typically $5-50 per site).
+2026-03-16 21:14:42,112 - travel.critic - INFO - Critic feedback: {'valid': False, 'issues': ['Cost validation issue: 6 of 9 activities have $0 estimated cost. This appears to be placeholder data. All major attractions should have realistic pricing (typically $5-50 per site).'], 'suggestion': 'Please review your itinerary and make the necessary adjustments.', 'stage': 'rule_validation'}
+2026-03-16 21:14:42,112 - travel.critic - INFO - Decision: REJECT (rule violations)
+2026-03-16 21:14:42,134 - travel.decision - WARNING - ❌ Critic rejected itinerary.
+2026-03-16 21:14:42,134 - travel.decision - INFO - Regeneration attempt: 1/2
+2026-03-16 21:14:42,134 - travel.decision - INFO - Critic feedback: {'valid': False, 'issues': ['Cost validation issue: 6 of 9 activities have $0 estimated cost. This appears to be placeholder data. All major attractions should have realistic pricing (typically $5-50 per site).'], 'suggestion': 'Please review your itinerary and make the necessary adjustments.', 'stage': 'rule_validation'}
+2026-03-16 21:14:42,134 - travel.decision - INFO - Routing back to planner for regeneration...
+2026-03-16 21:14:42,135 - travel.decision - INFO - Suggestion: Please review your itinerary and make the necessary adjustments.
+2026-03-16 21:14:42,141 - travel.agent - INFO - Decision: Critic rejected, routing back to planner for regeneration
+2026-03-16 21:14:42,155 - travel.planner - INFO - Planner regeneration attempt #1
+2026-03-16 21:14:42,155 - travel.planner - INFO - Critic feedback: {'valid': False, 'issues': ['Cost validation issue: 6 of 9 activities have $0 estimated cost. This appears to be placeholder data. All major attractions should have realistic pricing (typically $5-50 per site).'], 'suggestion': 'Please review your itinerary and make the necessary adjustments.', 'stage': 'rule_validation'}
+2026-03-16 21:14:44,513 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:44,513 - travel.planner - INFO - Planner LLM output: {
+  "city": "Rome",
+  "days": 3,
+  "itinerary": [
+    {
+      "day": 1,
+      "activities": [
+      ...
+2026-03-16 21:14:44,513 - travel.planner - INFO - TripPlan parsed successfully for: Rome
+2026-03-16 21:14:44,517 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:14:44,521 - travel.critic - INFO - ============================================================
+2026-03-16 21:14:44,521 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-16 21:14:44,521 - travel.critic - INFO - ============================================================
+2026-03-16 21:14:44,521 - travel.critic - INFO - Validating TripPlan for city: Rome
+2026-03-16 21:14:44,522 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-16 21:14:44,522 - travel.critic - INFO - Running rule-based validation...
+2026-03-16 21:14:44,522 - travel.critic - INFO - Validating TripPlan: Rome, 3 days
+2026-03-16 21:14:44,522 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-16 21:14:44,522 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-16 21:14:44,522 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-16 21:14:44,522 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-16 21:14:44,522 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-16 21:14:44,522 - travel.critic - INFO - ✓ RULE VALIDATION PASSED
+2026-03-16 21:14:44,522 - travel.critic - INFO - Rule issues: None
+2026-03-16 21:14:44,522 - travel.critic - INFO - 
+--- STAGE 2: LLM CRITIC ---
+2026-03-16 21:14:44,522 - travel.critic - INFO - Running LLM-based semantic critique...
+2026-03-16 21:14:46,254 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:46,257 - travel.critic - INFO - TripPlan quality response: {
+    "valid": true,
+    "issues": []
+}
+2026-03-16 21:14:46,257 - travel.critic - INFO - TripPlan validation result: valid=True, issues=[]
+2026-03-16 21:14:46,257 - travel.critic - INFO - ✓ LLM CRITIC PASSED
+2026-03-16 21:14:46,258 - travel.critic - INFO - LLM issues: None
+2026-03-16 21:14:46,258 - travel.critic - INFO - 
+============================================================
+2026-03-16 21:14:46,258 - travel.critic - INFO - ✓✓✓ HYBRID VALIDATION PASSED ✓✓✓
+2026-03-16 21:14:46,258 - travel.critic - INFO - ============================================================
+2026-03-16 21:14:46,258 - travel.critic - INFO - Decision: ACCEPT (route to formatter)
+2026-03-16 21:14:46,258 - travel.critic - INFO - Critic feedback: {'valid': True, 'issues': [], 'suggestion': 'No issues detected. Itinerary is ready!', 'stage': 'all_validations_passed'}
+2026-03-16 21:14:46,274 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:14:46,275 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:14:46,275 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:14:46,278 - travel.agent - INFO - Decision: Critic accepted, routing to formatter_node
+2026-03-16 21:14:46,282 - travel.formatter - INFO - Formatting TripPlan for city: Rome
+2026-03-16 21:14:46,283 - travel.formatter - INFO - Trip formatted successfully
+2026-03-16 21:14:46,287 - __main__ - INFO - ✓ Accepted | Days: 3 | Activities/day: 3.0 | Realism: 0.75
+2026-03-16 21:14:46,287 - __main__ - INFO - 
+[2/16]
+2026-03-16 21:14:46,287 - __main__ - INFO - 
+============================================================
+2026-03-16 21:14:46,287 - __main__ - INFO - Evaluating: realistic_2 (REALISTIC)
+2026-03-16 21:14:46,287 - __main__ - INFO - Query: 5 day trip to manali
+2026-03-16 21:14:46,293 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 5 day trip to manali
+2026-03-16 21:14:53,642 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:53,643 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Manali is a real and popular tourist destination in India with well-developed tourism infrastructure."
+}
+2026-03-16 21:14:53,643 - travel.critic - INFO - Query validation result: reasonable=True, reason=Manali is a real and popular tourist destination in India with well-developed tourism infrastructure.
+2026-03-16 21:14:53,643 - travel.query_validator - INFO - Trip query validation passed: Manali is a real and popular tourist destination in India with well-developed tourism infrastructure.
+2026-03-16 21:14:54,784 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:54,785 - travel.planner - INFO - Planner LLM output: To plan your 5-day trip to Manali, I need to know a few more details. Can you please clarify:
+
+1. Ho...
+2026-03-16 21:14:54,785 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:14:54,785 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:14:54,788 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:14:54,791 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:14:54,796 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:14:54,796 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:14:54,797 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:14:54,799 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:14:54,801 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:14:54,801 - __main__ - INFO - 
+[3/16]
+2026-03-16 21:14:54,801 - __main__ - INFO - 
+============================================================
+2026-03-16 21:14:54,801 - __main__ - INFO - Evaluating: realistic_3 (REALISTIC)
+2026-03-16 21:14:54,801 - __main__ - INFO - Query: 2 day trip to agra
+2026-03-16 21:14:54,807 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 2 day trip to agra
+2026-03-16 21:14:58,041 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:14:58,041 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Agra is a real city in India, famous for the Taj Mahal. It has commercial flights, hotels, and tourism infrastructure, making a 2-day trip feasible."
+}
+2026-03-16 21:14:58,041 - travel.critic - INFO - Query validation result: reasonable=True, reason=Agra is a real city in India, famous for the Taj Mahal. It has commercial flights, hotels, and tourism infrastructure, making a 2-day trip feasible.
+2026-03-16 21:14:58,042 - travel.query_validator - INFO - Trip query validation passed: Agra is a real city in India, famous for the Taj Mahal. It has commercial flights, hotels, and tourism infrastructure, making a 2-day trip feasible.
+2026-03-16 21:15:00,968 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:00,968 - travel.planner - INFO - Planner LLM output: To plan your 2-day trip to Agra, I need to know more about your preferences and activities. 
+
+Please...
+2026-03-16 21:15:00,968 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:15:00,968 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:15:00,971 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:00,974 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:00,980 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:00,980 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:00,980 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:00,982 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:00,985 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:00,985 - __main__ - INFO - 
+[4/16]
+2026-03-16 21:15:00,985 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:00,985 - __main__ - INFO - Evaluating: realistic_4 (REALISTIC)
+2026-03-16 21:15:00,985 - __main__ - INFO - Query: plan 4 day trip to paris with 5 visits per day
+2026-03-16 21:15:00,991 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan 4 day trip to paris with 5 visits per day
+2026-03-16 21:15:04,348 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:04,348 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible."
+}
+2026-03-16 21:15:04,348 - travel.critic - INFO - Query validation result: reasonable=True, reason=Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible.
+2026-03-16 21:15:04,349 - travel.query_validator - INFO - Trip query validation passed: Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible.
+2026-03-16 21:15:04,573 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:04,573 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872d8-268b388c554362d7510ab24c;f02d5c7f-039e-4056-9d0a-74c325b38719)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:04,576 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:04,579 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:04,584 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:04,584 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:04,585 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:04,595 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:04,600 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:04,600 - __main__ - INFO - 
+[5/16]
+2026-03-16 21:15:04,600 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:04,600 - __main__ - INFO - Evaluating: realistic_5 (REALISTIC)
+2026-03-16 21:15:04,600 - __main__ - INFO - Query: suggest a 6 day itinerary for delhi
+2026-03-16 21:15:04,611 - travel.query_validator - INFO - Trip request detected, validating feasibility for: suggest a 6 day itinerary for delhi
+2026-03-16 21:15:04,837 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:04,837 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872d8-0d9fe632307b226f4fa4fe45;c1543d1c-46d5-4a52-9c68-ead300b12d04)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:04,837 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:15:05,052 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:05,053 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872d9-165b4f5651fd31525f696230;aee31674-84cd-4b80-a145-af23000d4085)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:05,056 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:05,059 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:05,063 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:05,064 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:05,064 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:05,067 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:05,069 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:05,069 - __main__ - INFO - 
+[6/16]
+2026-03-16 21:15:05,069 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:05,069 - __main__ - INFO - Evaluating: unrealistic_1 (UNREALISTIC)
+2026-03-16 21:15:05,069 - __main__ - INFO - Query: trip to mars
+2026-03-16 21:15:05,074 - travel.query_validator - INFO - Trip request detected, validating feasibility for: trip to mars
+2026-03-16 21:15:07,737 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:07,738 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": false,
+    "reason": "Mars is not a feasible destination for regular tourism due to technological and safety constraints."
+}
+2026-03-16 21:15:07,738 - travel.critic - INFO - Query validation result: reasonable=False, reason=Mars is not a feasible destination for regular tourism due to technological and safety constraints.
+2026-03-16 21:15:07,738 - travel.query_validator - WARNING - Trip query validation failed: Mars is not a feasible destination for regular tourism due to technological and safety constraints.
+2026-03-16 21:15:09,818 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:09,819 - travel.planner - INFO - Planner LLM output: Would you like to plan a trip to a more Earth-based destination?...
+2026-03-16 21:15:09,819 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:15:09,819 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:15:09,822 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:09,826 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:09,830 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:09,830 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:09,830 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:09,833 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:09,835 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:09,836 - __main__ - INFO - 
+[7/16]
+2026-03-16 21:15:09,836 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:09,836 - __main__ - INFO - Evaluating: unrealistic_2 (UNREALISTIC)
+2026-03-16 21:15:09,836 - __main__ - INFO - Query: vacation at a nuclear weapons base
+2026-03-16 21:15:09,847 - travel.query_validator - INFO - Trip request detected, validating feasibility for: vacation at a nuclear weapons base
+2026-03-16 21:15:11,789 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:11,790 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": false,
+    "reason": "Nuclear weapons bases are not open to tourists due to security and safety concerns."
+}
+2026-03-16 21:15:11,790 - travel.critic - INFO - Query validation result: reasonable=False, reason=Nuclear weapons bases are not open to tourists due to security and safety concerns.
+2026-03-16 21:15:11,790 - travel.query_validator - WARNING - Trip query validation failed: Nuclear weapons bases are not open to tourists due to security and safety concerns.
+2026-03-16 21:15:12,264 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:12,264 - travel.planner - INFO - Planner LLM output: I cannot provide information on nuclear weapons bases. Is there anything else I can help you with?...
+2026-03-16 21:15:12,264 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:15:12,264 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:15:12,269 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:12,274 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:12,288 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:12,288 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:12,289 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:12,293 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:12,299 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:12,299 - __main__ - INFO - 
+[8/16]
+2026-03-16 21:15:12,300 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:12,300 - __main__ - INFO - Evaluating: unrealistic_3 (UNREALISTIC)
+2026-03-16 21:15:12,300 - __main__ - INFO - Query: 2 day trip to paris with 50 activities per day
+2026-03-16 21:15:12,313 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 2 day trip to paris with 50 activities per day
+2026-03-16 21:15:16,993 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:16,993 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": false,
+    "reason": "While Paris is a real and feasible tourist destination, it is not realistic to complete 50 activities per day in a 2-day trip due to time constraints and the need for rest."
+}
+2026-03-16 21:15:16,993 - travel.critic - INFO - Query validation result: reasonable=False, reason=While Paris is a real and feasible tourist destination, it is not realistic to complete 50 activities per day in a 2-day trip due to time constraints and the need for rest.
+2026-03-16 21:15:16,994 - travel.query_validator - WARNING - Trip query validation failed: While Paris is a real and feasible tourist destination, it is not realistic to complete 50 activities per day in a 2-day trip due to time constraints and the need for rest.
+2026-03-16 21:15:20,872 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:20,873 - travel.planner - INFO - Planner LLM output: You requested 50 visits per day. This is physically impossible due to travel time, entrance queues, ...
+2026-03-16 21:15:20,873 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:15:20,873 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:15:20,876 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:20,879 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:20,884 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:20,884 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:20,884 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:20,886 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:20,889 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:20,889 - __main__ - INFO - 
+[9/16]
+2026-03-16 21:15:20,889 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:20,889 - __main__ - INFO - Evaluating: unrealistic_4 (UNREALISTIC)
+2026-03-16 21:15:20,889 - __main__ - INFO - Query: plan a trip to atlantis
+2026-03-16 21:15:20,895 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan a trip to atlantis
+2026-03-16 21:15:23,927 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:23,927 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": false,
+    "reason": "Atlantis is a mythical place and does not exist as a real, geographically valid location."
+}
+2026-03-16 21:15:23,927 - travel.critic - INFO - Query validation result: reasonable=False, reason=Atlantis is a mythical place and does not exist as a real, geographically valid location.
+2026-03-16 21:15:23,927 - travel.query_validator - WARNING - Trip query validation failed: Atlantis is a mythical place and does not exist as a real, geographically valid location.
+2026-03-16 21:15:28,700 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:28,701 - travel.planner - INFO - Planner LLM output: I'm afraid I won't be able to plan a trip to Atlantis as it is a fictional place. If you'd like, I c...
+2026-03-16 21:15:28,705 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:15:28,705 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:15:28,715 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:28,722 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:28,736 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:28,737 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:28,738 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:28,759 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:28,777 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:28,778 - __main__ - INFO - 
+[10/16]
+2026-03-16 21:15:28,778 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:28,778 - __main__ - INFO - Evaluating: unrealistic_5 (UNREALISTIC)
+2026-03-16 21:15:28,778 - __main__ - INFO - Query: 3 day trip to london with 25 activities each day
+2026-03-16 21:15:28,790 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 3 day trip to london with 25 activities each day
+2026-03-16 21:15:30,948 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:15:30,948 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": false,
+    "reason": "While London is a real and feasible tourist destination, planning 25 activities per day for 3 days is not realistic due to time constraints and the need for rest."
+}
+2026-03-16 21:15:30,949 - travel.critic - INFO - Query validation result: reasonable=False, reason=While London is a real and feasible tourist destination, planning 25 activities per day for 3 days is not realistic due to time constraints and the need for rest.
+2026-03-16 21:15:30,949 - travel.query_validator - WARNING - Trip query validation failed: While London is a real and feasible tourist destination, planning 25 activities per day for 3 days is not realistic due to time constraints and the need for rest.
+2026-03-16 21:15:31,169 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:31,170 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f3-299f51fa4f073123629a55c2;7e729ad1-c458-4712-ac6b-065ed2cc6be3)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:31,173 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:31,183 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:31,216 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:31,216 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:31,217 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:31,222 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:31,225 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:31,226 - __main__ - INFO - 
+[11/16]
+2026-03-16 21:15:31,226 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:31,226 - __main__ - INFO - Evaluating: edge_case_1 (EDGE_CASES)
+2026-03-16 21:15:31,226 - __main__ - INFO - Query: hi
+2026-03-16 21:15:31,233 - travel.query_validator - INFO - Non-trip query detected, skipping validation: hi
+2026-03-16 21:15:31,239 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-16 21:15:31,239 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-16 21:15:31,999 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:32,002 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:32,006 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:32,006 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:32,006 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:32,009 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:32,010 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:32,011 - __main__ - INFO - 
+[12/16]
+2026-03-16 21:15:32,011 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:32,011 - __main__ - INFO - Evaluating: edge_case_2 (EDGE_CASES)
+2026-03-16 21:15:32,011 - __main__ - INFO - Query: suggest places to visit
+2026-03-16 21:15:32,015 - travel.query_validator - INFO - Non-trip query detected, skipping validation: suggest places to visit
+2026-03-16 21:15:32,236 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:32,236 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f4-55e45193739318d52f53cdf7;e211888c-b8dc-413f-98ce-6f62f5d1f198)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:32,239 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:32,242 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:32,247 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:32,247 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:32,248 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:32,250 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:32,252 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:32,252 - __main__ - INFO - 
+[13/16]
+2026-03-16 21:15:32,252 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:32,252 - __main__ - INFO - Evaluating: edge_case_3 (EDGE_CASES)
+2026-03-16 21:15:32,252 - __main__ - INFO - Query: weekend trip near bangalore
+2026-03-16 21:15:32,258 - travel.query_validator - INFO - Trip request detected, validating feasibility for: weekend trip near bangalore
+2026-03-16 21:15:32,482 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:32,483 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f4-41d9fd111ed6735f3b020659;2a0f750e-2d7d-4814-9cfb-f6d795d02116)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:32,483 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:15:32,707 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:32,708 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f4-0eb4623c562dcba263b355e5;577bd08e-ea37-471c-8024-3ea30fdae7eb)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:32,710 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:32,713 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:32,720 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:32,720 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:32,720 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:32,723 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:32,725 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:32,726 - __main__ - INFO - 
+[14/16]
+2026-03-16 21:15:32,726 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:32,726 - __main__ - INFO - Evaluating: edge_case_4 (EDGE_CASES)
+2026-03-16 21:15:32,726 - __main__ - INFO - Query: hello, how are you?
+2026-03-16 21:15:32,737 - travel.query_validator - INFO - Non-trip query detected, skipping validation: hello, how are you?
+2026-03-16 21:15:32,746 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-16 21:15:32,746 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-16 21:15:33,335 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:33,337 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:33,341 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:33,341 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:33,341 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:33,344 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:33,346 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:33,346 - __main__ - INFO - 
+[15/16]
+2026-03-16 21:15:33,346 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:33,346 - __main__ - INFO - Evaluating: edge_case_5 (EDGE_CASES)
+2026-03-16 21:15:33,346 - __main__ - INFO - Query: what are some famous landmarks?
+2026-03-16 21:15:33,351 - travel.query_validator - INFO - Non-trip query detected, skipping validation: what are some famous landmarks?
+2026-03-16 21:15:33,574 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:33,576 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f5-5d72679d066a0850433a9b51;00fb53ca-8f7f-461b-8424-826f3823ef10)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:33,592 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:33,613 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:33,650 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:33,652 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:33,652 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:33,662 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:33,665 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:33,666 - __main__ - INFO - 
+[16/16]
+2026-03-16 21:15:33,666 - __main__ - INFO - 
+============================================================
+2026-03-16 21:15:33,666 - __main__ - INFO - Evaluating: edge_case_6 (EDGE_CASES)
+2026-03-16 21:15:33,666 - __main__ - INFO - Query: plan trip to goa
+2026-03-16 21:15:33,678 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan trip to goa
+2026-03-16 21:15:33,891 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:33,891 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f5-286bb02852b0dd9871a66e7b;e1528576-6daf-4434-b85e-9301fb66ff5d)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:33,892 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:15:34,127 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:15:34,128 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b872f6-398e26417f7a64da4efaa16e;a70a1399-8003-4374-b8c4-8212fa6ea5c3)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:15:34,131 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:15:34,134 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:15:34,140 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:15:34,140 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:15:34,140 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:15:34,143 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:15:34,145 - __main__ - INFO - ℹ️  Non-trip query (no tripplan expected)
+2026-03-16 21:15:34,146 - __main__ - INFO - 
+✓ Report saved to: /workspaces/Om-Tour/agent/evaluation/evaluation_report.json
+2026-03-16 21:28:41,435 - __main__ - INFO - 
+############################################################
+2026-03-16 21:28:41,435 - __main__ - INFO - SARATHI TRAVEL AGENT EVALUATION
+2026-03-16 21:28:41,435 - __main__ - INFO - ############################################################
+2026-03-16 21:28:41,435 - __main__ - INFO - Starting evaluation with 16 test cases
+2026-03-16 21:28:41,435 - __main__ - INFO - 
+[1/16]
+2026-03-16 21:28:41,436 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:41,436 - __main__ - INFO - Evaluating: realistic_1 (REALISTIC)
+2026-03-16 21:28:41,436 - __main__ - INFO - Query: plan a 3 day trip to rome
+2026-03-16 21:28:41,471 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan a 3 day trip to rome
+2026-03-16 21:28:43,292 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:43,292 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Rome is a real city with extensive tourism infrastructure and is safe for visitors."
+}
+2026-03-16 21:28:43,292 - travel.critic - INFO - Query validation result: reasonable=True, reason=Rome is a real city with extensive tourism infrastructure and is safe for visitors.
+2026-03-16 21:28:43,292 - travel.query_validator - INFO - Trip query validation passed: Rome is a real city with extensive tourism infrastructure and is safe for visitors.
+2026-03-16 21:28:44,762 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:44,763 - travel.planner - INFO - Planner LLM output: {
+    "city": "Rome",
+    "days": 3,
+    "itinerary": [
+        {
+            "day": 1,
+            ...
+2026-03-16 21:28:44,763 - travel.planner - INFO - TripPlan parsed successfully for: Rome
+2026-03-16 21:28:44,766 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:44,771 - travel.critic - INFO - ============================================================
+2026-03-16 21:28:44,771 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-16 21:28:44,771 - travel.critic - INFO - ============================================================
+2026-03-16 21:28:44,771 - travel.critic - INFO - Validating TripPlan for city: Rome
+2026-03-16 21:28:44,771 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-16 21:28:44,771 - travel.critic - INFO - Running rule-based validation...
+2026-03-16 21:28:44,772 - travel.critic - INFO - Validating TripPlan: Rome, 3 days
+2026-03-16 21:28:44,772 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-16 21:28:44,772 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-16 21:28:44,772 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-16 21:28:44,772 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-16 21:28:44,772 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-16 21:28:44,772 - travel.critic - INFO - ✓ RULE VALIDATION PASSED
+2026-03-16 21:28:44,773 - travel.critic - INFO - Rule issues: None
+2026-03-16 21:28:44,773 - travel.critic - INFO - 
+--- STAGE 2: LLM CRITIC ---
+2026-03-16 21:28:44,773 - travel.critic - INFO - Running LLM-based semantic critique...
+2026-03-16 21:28:46,204 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:46,205 - travel.critic - INFO - TripPlan quality response: {
+    "valid": true,
+    "issues": []
+}
+2026-03-16 21:28:46,205 - travel.critic - INFO - TripPlan validation result: valid=True, issues=[]
+2026-03-16 21:28:46,205 - travel.critic - INFO - ✓ LLM CRITIC PASSED
+2026-03-16 21:28:46,205 - travel.critic - INFO - LLM issues: None
+2026-03-16 21:28:46,205 - travel.critic - INFO - 
+============================================================
+2026-03-16 21:28:46,205 - travel.critic - INFO - ✓✓✓ HYBRID VALIDATION PASSED ✓✓✓
+2026-03-16 21:28:46,205 - travel.critic - INFO - ============================================================
+2026-03-16 21:28:46,205 - travel.critic - INFO - Decision: ACCEPT (route to formatter)
+2026-03-16 21:28:46,205 - travel.critic - INFO - Critic feedback: {'valid': True, 'issues': [], 'suggestion': 'No issues detected. Itinerary is ready!', 'stage': 'all_validations_passed'}
+2026-03-16 21:28:46,210 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:46,211 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:46,211 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:46,214 - travel.agent - INFO - Decision: Critic accepted, routing to formatter_node
+2026-03-16 21:28:46,226 - travel.formatter - INFO - Formatting TripPlan for city: Rome
+2026-03-16 21:28:46,227 - travel.formatter - INFO - Trip formatted successfully
+2026-03-16 21:28:46,237 - __main__ - INFO - ✓ Accepted | Days: 3 | Activities/day: 3.0 | Realism: 0.75
+2026-03-16 21:28:46,237 - __main__ - INFO - 
+[2/16]
+2026-03-16 21:28:46,238 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:46,238 - __main__ - INFO - Evaluating: realistic_2 (REALISTIC)
+2026-03-16 21:28:46,238 - __main__ - INFO - Query: 5 day trip to manali
+2026-03-16 21:28:46,260 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 5 day trip to manali
+2026-03-16 21:28:47,814 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:47,815 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Manali is a real and popular tourist destination in India with well-established tourism infrastructure."
+}
+2026-03-16 21:28:47,815 - travel.critic - INFO - Query validation result: reasonable=True, reason=Manali is a real and popular tourist destination in India with well-established tourism infrastructure.
+2026-03-16 21:28:47,815 - travel.query_validator - INFO - Trip query validation passed: Manali is a real and popular tourist destination in India with well-established tourism infrastructure.
+2026-03-16 21:28:49,765 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:49,766 - travel.planner - INFO - Planner LLM output: How many days would you like to spend in Manali?...
+2026-03-16 21:28:49,766 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:28:49,766 - travel.planner - INFO - Non-trip query response
+2026-03-16 21:28:49,769 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:49,773 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:49,777 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:49,777 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:49,777 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:49,779 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:49,781 - __main__ - ERROR - ❌ Planner failure on trip query realistic_2
+2026-03-16 21:28:49,782 - __main__ - INFO - 
+[3/16]
+2026-03-16 21:28:49,782 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:49,782 - __main__ - INFO - Evaluating: realistic_3 (REALISTIC)
+2026-03-16 21:28:49,782 - __main__ - INFO - Query: 2 day trip to agra
+2026-03-16 21:28:49,787 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 2 day trip to agra
+2026-03-16 21:28:51,855 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:51,855 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Agra is a real city in India with significant tourism infrastructure, including the Taj Mahal. A 2-day trip is feasible and common."
+}
+2026-03-16 21:28:51,855 - travel.critic - INFO - Query validation result: reasonable=True, reason=Agra is a real city in India with significant tourism infrastructure, including the Taj Mahal. A 2-day trip is feasible and common.
+2026-03-16 21:28:51,855 - travel.query_validator - INFO - Trip query validation passed: Agra is a real city in India with significant tourism infrastructure, including the Taj Mahal. A 2-day trip is feasible and common.
+2026-03-16 21:28:52,309 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:52,310 - travel.planner - INFO - Planner LLM output: How many days would you like to spend in Agra?...
+2026-03-16 21:28:52,310 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:28:52,310 - travel.planner - INFO - Non-trip query response
+2026-03-16 21:28:52,313 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:52,316 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:52,320 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:52,320 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:52,320 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:52,323 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:52,325 - __main__ - ERROR - ❌ Planner failure on trip query realistic_3
+2026-03-16 21:28:52,325 - __main__ - INFO - 
+[4/16]
+2026-03-16 21:28:52,325 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:52,325 - __main__ - INFO - Evaluating: realistic_4 (REALISTIC)
+2026-03-16 21:28:52,325 - __main__ - INFO - Query: plan 4 day trip to paris with 5 visits per day
+2026-03-16 21:28:52,330 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan 4 day trip to paris with 5 visits per day
+2026-03-16 21:28:54,622 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:54,622 - travel.critic - INFO - Query reasonableness response: {
+    "reasonable": true,
+    "reason": "Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible."
+}
+2026-03-16 21:28:54,623 - travel.critic - INFO - Query validation result: reasonable=True, reason=Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible.
+2026-03-16 21:28:54,623 - travel.query_validator - INFO - Trip query validation passed: Paris is a real, popular tourist destination with ample infrastructure to support tourism. A 4-day trip with 5 visits per day is feasible.
+2026-03-16 21:28:55,464 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-16 21:28:55,465 - travel.planner - INFO - Planner LLM output: To plan a trip to Paris, I need to clarify a few details. How many days would you like to spend in P...
+2026-03-16 21:28:55,465 - travel.planner - WARNING - No JSON block found in LLM output.
+2026-03-16 21:28:55,465 - travel.planner - INFO - Trip query: LLM returned text response (not JSON tripplan)
+2026-03-16 21:28:55,469 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:55,474 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:55,480 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:55,480 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:55,481 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:55,485 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:55,489 - __main__ - ERROR - ❌ Planner failure on trip query realistic_4
+2026-03-16 21:28:55,489 - __main__ - INFO - 
+[5/16]
+2026-03-16 21:28:55,489 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:55,490 - __main__ - INFO - Evaluating: realistic_5 (REALISTIC)
+2026-03-16 21:28:55,490 - __main__ - INFO - Query: suggest a 6 day itinerary for delhi
+2026-03-16 21:28:55,499 - travel.query_validator - INFO - Trip request detected, validating feasibility for: suggest a 6 day itinerary for delhi
+2026-03-16 21:28:55,711 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:55,712 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87617-50de5ac35ca55702343e08a1;b6f6a1b1-ef02-45d7-a367-13e71590e55e)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:55,712 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:55,930 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:55,930 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87618-0c53edf152757b61251aa25e;bea44ff2-72d8-40ce-846a-043f8c42ad6e)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:55,933 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:55,936 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:55,941 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:55,941 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:55,941 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:55,944 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:55,946 - __main__ - ERROR - ❌ Planner failure on trip query realistic_5
+2026-03-16 21:28:55,946 - __main__ - INFO - 
+[6/16]
+2026-03-16 21:28:55,946 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:55,946 - __main__ - INFO - Evaluating: unrealistic_1 (UNREALISTIC)
+2026-03-16 21:28:55,946 - __main__ - INFO - Query: trip to mars
+2026-03-16 21:28:55,952 - travel.query_validator - INFO - Trip request detected, validating feasibility for: trip to mars
+2026-03-16 21:28:56,175 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:56,175 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87618-2f364dcc156c727d07229b38;d64873e3-915b-4a9c-8b5f-e32775cad32c)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:56,175 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:56,391 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:56,391 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87618-7e35c5435f53b8ba23a6c21a;5b913fd9-a7af-4471-949b-a7deae963f1b)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:56,394 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:56,399 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:56,406 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:56,406 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:56,406 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:56,409 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:56,411 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_1
+2026-03-16 21:28:56,411 - __main__ - INFO - 
+[7/16]
+2026-03-16 21:28:56,411 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:56,411 - __main__ - INFO - Evaluating: unrealistic_2 (UNREALISTIC)
+2026-03-16 21:28:56,411 - __main__ - INFO - Query: vacation at a nuclear weapons base
+2026-03-16 21:28:56,417 - travel.query_validator - INFO - Trip request detected, validating feasibility for: vacation at a nuclear weapons base
+2026-03-16 21:28:56,623 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:56,624 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87618-73e170b30678294875c65c76;3c1e68be-8b9f-4b82-b554-9fe49efc2206)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:56,624 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:56,844 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:56,844 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87618-08c4d87e50ea3f2241ecfa6a;38264440-a9e5-4933-a66e-34d83898f9ea)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:56,847 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:56,850 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:56,855 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:56,855 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:56,855 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:56,858 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:56,860 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_2
+2026-03-16 21:28:56,860 - __main__ - INFO - 
+[8/16]
+2026-03-16 21:28:56,860 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:56,860 - __main__ - INFO - Evaluating: unrealistic_3 (UNREALISTIC)
+2026-03-16 21:28:56,860 - __main__ - INFO - Query: 2 day trip to paris with 50 activities per day
+2026-03-16 21:28:56,865 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 2 day trip to paris with 50 activities per day
+2026-03-16 21:28:57,075 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:57,076 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87619-524c2adc462b505c4eeecc98;1112349a-384c-4a94-9e73-1cfe49e6c5de)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:57,076 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:57,296 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:57,296 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87619-2b8a62bb57c31af74ea06af8;c8efb479-dc9e-4a8b-87f8-eee28720c6bd)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:57,299 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:57,302 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:57,307 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:57,307 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:57,307 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:57,311 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:57,315 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_3
+2026-03-16 21:28:57,315 - __main__ - INFO - 
+[9/16]
+2026-03-16 21:28:57,315 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:57,315 - __main__ - INFO - Evaluating: unrealistic_4 (UNREALISTIC)
+2026-03-16 21:28:57,315 - __main__ - INFO - Query: plan a trip to atlantis
+2026-03-16 21:28:57,320 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan a trip to atlantis
+2026-03-16 21:28:57,529 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:57,531 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87619-0b118f57533ba8ea45480c95;8c3b92fa-6187-4a37-8799-b4ad5de579da)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:57,531 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:57,753 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:57,753 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b87619-3509c82e24c149321aaa7b7f;f7caea30-fe40-4bc6-8f6e-160cda546498)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:57,756 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:57,759 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:57,763 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:57,763 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:57,764 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:57,766 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:57,768 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_4
+2026-03-16 21:28:57,768 - __main__ - INFO - 
+[10/16]
+2026-03-16 21:28:57,769 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:57,769 - __main__ - INFO - Evaluating: unrealistic_5 (UNREALISTIC)
+2026-03-16 21:28:57,769 - __main__ - INFO - Query: 3 day trip to london with 25 activities each day
+2026-03-16 21:28:57,774 - travel.query_validator - INFO - Trip request detected, validating feasibility for: 3 day trip to london with 25 activities each day
+2026-03-16 21:28:57,982 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:57,983 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761a-05e7fe565d2fdafe1b1b1424;218c3f7e-7c6d-4544-aafd-fa41bb217508)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:57,983 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:58,196 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:58,196 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761a-15301d0715f50bd83b570506;acbf708c-315e-4c58-836a-efe23de6ff04)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:58,201 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:58,205 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:58,210 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:58,211 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:58,211 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:58,214 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:58,216 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_5
+2026-03-16 21:28:58,216 - __main__ - INFO - 
+[11/16]
+2026-03-16 21:28:58,216 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:58,217 - __main__ - INFO - Evaluating: edge_case_1 (EDGE_CASES)
+2026-03-16 21:28:58,217 - __main__ - INFO - Query: hi
+2026-03-16 21:28:58,223 - travel.query_validator - INFO - Non-trip query detected, skipping validation: hi
+2026-03-16 21:28:58,231 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-16 21:28:58,231 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-16 21:28:58,731 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:58,734 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:58,738 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:58,738 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:58,738 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:58,741 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:58,743 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-16 21:28:58,743 - __main__ - INFO - 
+[12/16]
+2026-03-16 21:28:58,743 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:58,743 - __main__ - INFO - Evaluating: edge_case_2 (EDGE_CASES)
+2026-03-16 21:28:58,743 - __main__ - INFO - Query: suggest places to visit
+2026-03-16 21:28:58,748 - travel.query_validator - INFO - Non-trip query detected, skipping validation: suggest places to visit
+2026-03-16 21:28:58,960 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:58,960 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761b-790788f415d2dd2f0e589098;bc4adbc2-cbb4-4c9f-9ab3-ce7d6470f9ce)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:58,963 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:58,966 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:58,970 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:58,971 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:58,971 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:58,973 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:58,975 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_2
+2026-03-16 21:28:58,976 - __main__ - INFO - 
+[13/16]
+2026-03-16 21:28:58,976 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:58,976 - __main__ - INFO - Evaluating: edge_case_3 (EDGE_CASES)
+2026-03-16 21:28:58,976 - __main__ - INFO - Query: weekend trip near bangalore
+2026-03-16 21:28:58,982 - travel.query_validator - INFO - Trip request detected, validating feasibility for: weekend trip near bangalore
+2026-03-16 21:28:59,193 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:59,193 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761b-1537e3a80ca56c253d434e52;0661a5d7-0818-4c53-86fa-96459c3c0809)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:59,193 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:28:59,415 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:28:59,416 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761b-6dbc6c417e0f0c123c33a4d9;e6cc879d-0f73-4537-832c-808386883155)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:28:59,419 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:28:59,424 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:28:59,428 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:28:59,428 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:28:59,428 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:28:59,431 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:28:59,433 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_3
+2026-03-16 21:28:59,433 - __main__ - INFO - 
+[14/16]
+2026-03-16 21:28:59,433 - __main__ - INFO - 
+============================================================
+2026-03-16 21:28:59,433 - __main__ - INFO - Evaluating: edge_case_4 (EDGE_CASES)
+2026-03-16 21:28:59,434 - __main__ - INFO - Query: hello, how are you?
+2026-03-16 21:28:59,439 - travel.query_validator - INFO - Non-trip query detected, skipping validation: hello, how are you?
+2026-03-16 21:28:59,443 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-16 21:28:59,443 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-16 21:29:00,147 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:29:00,150 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:29:00,153 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:29:00,153 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:29:00,153 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:29:00,156 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:29:00,158 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-16 21:29:00,158 - __main__ - INFO - 
+[15/16]
+2026-03-16 21:29:00,158 - __main__ - INFO - 
+============================================================
+2026-03-16 21:29:00,158 - __main__ - INFO - Evaluating: edge_case_5 (EDGE_CASES)
+2026-03-16 21:29:00,158 - __main__ - INFO - Query: what are some famous landmarks?
+2026-03-16 21:29:00,163 - travel.query_validator - INFO - Non-trip query detected, skipping validation: what are some famous landmarks?
+2026-03-16 21:29:00,374 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:29:00,375 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761c-5429c4ea361e924f6aacee94;5de0059e-c748-4352-9be3-38c56441d8cd)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:29:00,378 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:29:00,381 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:29:00,385 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:29:00,386 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:29:00,386 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:29:00,388 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:29:00,390 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-16 21:29:00,390 - __main__ - INFO - 
+[16/16]
+2026-03-16 21:29:00,390 - __main__ - INFO - 
+============================================================
+2026-03-16 21:29:00,391 - __main__ - INFO - Evaluating: edge_case_6 (EDGE_CASES)
+2026-03-16 21:29:00,391 - __main__ - INFO - Query: plan trip to goa
+2026-03-16 21:29:00,396 - travel.query_validator - INFO - Trip request detected, validating feasibility for: plan trip to goa
+2026-03-16 21:29:00,604 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:29:00,605 - travel.critic - WARNING - Query reasonableness check failed: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761c-59ca5a7e7c858af244d216d2;8ab1deb6-3217-4379-89f3-33c3193b9495)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:29:00,605 - travel.query_validator - INFO - Trip query validation passed: Query validation skipped (LLM error)
+2026-03-16 21:29:00,818 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-16 21:29:00,819 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69b8761c-6b50fc8207a088e73b2706aa;3d9dcfb8-4d29-4c42-a574-748e2ef9ca42)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-16 21:29:00,822 - travel.agent - INFO - No tool calls detected, routing to critic_node
+2026-03-16 21:29:00,825 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-16 21:29:00,833 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-16 21:29:00,833 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-16 21:29:00,834 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-16 21:29:00,836 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-16 21:29:00,838 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_6
+2026-03-16 21:29:00,838 - __main__ - INFO - 
+✓ Report saved to: /workspaces/Om-Tour/agent/evaluation/evaluation_report.json

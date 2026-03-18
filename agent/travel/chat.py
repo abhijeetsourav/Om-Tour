@@ -53,6 +53,7 @@ def extract_json_block(text: str):
 def parse_tripplan_from_llm_output(llm_output: str):
     """
     Parse LLM output into TripPlan schema if possible.
+    Includes confidence normalization and retry logic.
     """
 
     from schemas.trip_schema import TripPlan
@@ -73,6 +74,27 @@ def parse_tripplan_from_llm_output(llm_output: str):
                    lambda m: '"confidence": {}'.format(float(m.group(1))/100), s)
         return s
 
+    def normalize_confidence(data: dict):
+        """Ensure confidence is a float between 0 and 1."""
+        conf = data.get("confidence", 0.7)
+        
+        # Handle string values (e.g., "90%" or "0.9")
+        if isinstance(conf, str):
+            conf = conf.replace("%", "").strip()
+        
+        try:
+            conf = float(conf)
+        except (ValueError, TypeError):
+            conf = 0.7
+        
+        # If > 1, assume it's a percentage and convert to decimal
+        if conf > 1:
+            conf = conf / 100
+        
+        # Clamp to [0, 1] range
+        conf = max(0.0, min(1.0, conf))
+        data["confidence"] = conf
+
     try:
         data = json.loads(json_block)
     except Exception as e:
@@ -86,11 +108,8 @@ def parse_tripplan_from_llm_output(llm_output: str):
             return None
 
     # Normalize confidence field
-    if "confidence" in data:
-        conf = data["confidence"]
-        if isinstance(conf, str) and "%" in conf:
-            conf = float(conf.replace("%", "")) / 100
-        data["confidence"] = conf
+    normalize_confidence(data)
+    
     try:
         tripplan = TripPlan(**data)
         return tripplan
@@ -229,17 +248,32 @@ You are Sarathi, an AI travel planner for Om Tours.
 
 You help users plan trips, discover places, and answer travel questions.
 
-Rules:
-- Ask for location if missing.
-- Use search_for_places when recommending places.
-- Prefer structured trip plans when the user asks to plan a trip.
-- If the user asks a general travel question, answer normally.
+CRITICAL INSTRUCTIONS FOR TRIP PLANNING:
+
+1. DESTINATION VALIDATION:
+   - Accept all real, Earth-based destinations (cities, regions, countries, islands, etc.)
+   - If a destination name appears to have a spelling error but is clearly a real place, CORRECT the spelling and proceed with planning
+   - Examples: "lakshdweep" → Lakshadweep, "mumbai" → Mumbai
+   - ONLY refuse completely fictional/mythial/unrealistic places (Mars, Atlantis, fictional worlds, etc.)
+
+2. TRIP DURATION:
+   - If the user does not specify the number of days, ASK THE USER TO CLARIFY instead of guessing
+   - Do NOT assume a default trip duration (e.g., 5 days, 7 days)
+   - Example response: "How many days would you like to spend in {{destination}}?"
+
+3. TRIP PLAN FORMAT:
+   - When planning a trip to a REAL destination with all required details: Return ONLY valid JSON matching the schema below
+   - When refusing a completely unrealistic destination: Return a brief, friendly text refusal - NO JSON
+   - Do NOT provide long explanations, suggestions, or alternatives in either case
+
+4. CONFIDENCE SCORING:
+   - Return confidence as a decimal between 0.0 and 1.0 (e.g., 0.85 for 85%)
+   - Higher confidence for well-known destinations, lower for obscure places
 
 Current trips:
 {json.dumps(state.get('trips', []))}
 
-TripPlan JSON schema (only when planning full trips):
-
+TripPlan JSON schema (for REAL destinations only):
 {{
     "city": string,
     "days": number,
@@ -257,14 +291,14 @@ TripPlan JSON schema (only when planning full trips):
         }}
     ],
     "estimated_budget": number,
-    "confidence": number  # IMPORTANT: Return confidence as a decimal between 0 and 1 (e.g., 0.92 for 92%), not as a percentage or integer.
+    "confidence": number (0.0 to 1.0)
 }}
 
-If planning a trip:
-Return ONLY JSON matching the schema.
-
-If answering a general travel question:
-Return normal text.
+RESPONSE FORMAT:
+- Real destination request with complete details → JSON trip plan only
+- Missing details (like number of days) → Ask for clarification as text
+- Fictional destination request → Brief text refusal only (no JSON)
+- General travel question → Normal text response
 """
 
     if not HUGGINGFACE_API_KEY:
@@ -306,39 +340,87 @@ Return normal text.
 
     # Step 2: Extract JSON and parse TripPlan
     json_block = extract_json_block(raw_content)
-    tripplan = parse_tripplan_from_llm_output(json_block)
+    tripplan = parse_tripplan_from_llm_output(raw_content)
+
+    # Detect if user is asking for a trip
+    is_trip_query = any(keyword in user_message.lower() for keyword in 
+                        ["trip", "travel", "plan", "itinerary", "journey", "vacation", "tour"])
 
     state["messages"] = []  # Ensure only one message is returned
 
-    from travel.format_trip import format_trip_for_chat
+    # NOTE: chat_node should NOT format the trip
+    # Formatting only happens in critic_node after validation
     if tripplan:
-        formatted = format_trip_for_chat(tripplan)
+        # Store TripPlan in state for critic validation
         state["tripplan"] = tripplan
-        state["messages"].append(AIMessage(content=formatted))
-    elif json_block:
-        # If TripPlan parsing fails but JSON block exists, try to display readable format
+        # Return empty messages - critic will format if validation passes
+        state["messages"] = []
+    elif is_trip_query and not tripplan:
+        # User asked for a trip but no JSON was generated
+        # Check if LLM intentionally refused (substantial text response) vs parsing error
+        
+        if raw_content and len(raw_content.strip()) > 100 and not json_block:
+            # LLM provided a substantial non-JSON response (likely a refusal with explanation)
+            logger.info("Trip query: LLM provided refusal/explanation. Passing to critic for review.")
+            state["tripplan"] = None
+            state["messages"] = [AIMessage(content=raw_content)]  # Keep the refusal message
+        else:
+            # Likely a parsing/formatting error - retry with stricter prompt
+            logger.info("Trip query detected but parsing failed. Retrying with stricter JSON prompt.")
+            
+            retry_prompt = f"""Extract ONLY a valid JSON TripPlan from the previous response.
+Return ONLY valid JSON matching this schema, no explanations:
+
+{{
+    "city": string,
+    "days": number,
+    "itinerary": [{{"day": number, "activities": [{{"name": string, "description": string, "location": string, "estimated_cost": number}}]}}],
+    "estimated_budget": number,
+    "confidence": number (0.0 to 1.0)
+}}
+"""
+            
+            retry_messages = messages.copy()
+            retry_messages.append({"role": "user", "content": retry_prompt})
+            
+            try:
+                retry_completion = client.chat.completions.create(
+                    model=HUGGINGFACE_MODEL,
+                    messages=retry_messages,
+                )
+                retry_content = retry_completion.choices[0].message.content
+                retry_tripplan = parse_tripplan_from_llm_output(retry_content)
+                
+                if retry_tripplan:
+                    state["tripplan"] = retry_tripplan
+                    state["messages"] = []  # Don't format here - let critic handle it
+                else:
+                    state["tripplan"] = None
+                    state["messages"] = [
+                        AIMessage(
+                            content="⚠️ I couldn't generate a structured trip plan. Please try rephrasing your request with more details (e.g., destination, duration, budget).")
+                    ]
+            except Exception as e:
+                logger.warning(f"Retry parsing failed: {e}")
+                state["tripplan"] = None
+                state["messages"] = [
+                    AIMessage(
+                        content="⚠️ I couldn't generate a structured trip plan. Please try rephrasing your request.")
+                ]
+    elif json_block and not is_trip_query:
+        # If JSON exists but not a trip query, try fallback
         try:
             data = json.loads(json_block)
-            # Defensive: handle confidence normalization
-            if "confidence" in data:
-                conf = data["confidence"]
-                if isinstance(conf, str) and "%" in conf:
-                    conf = float(conf.replace("%", "")) / 100
-                data["confidence"] = conf
             tripplan_fallback = TripPlan(**data)
-            formatted = format_trip_for_chat(tripplan_fallback)
             state["tripplan"] = tripplan_fallback
-            state["messages"].append(AIMessage(content=formatted))
+            state["messages"] = []  # Don't format here - let critic handle it
         except Exception:
             state["tripplan"] = None
-            state["messages"].append(
-                AIMessage(
-                    content="⚠️ I couldn't generate a structured trip plan. Please try rephrasing your request.")
-            )
+            state["messages"] = [AIMessage(content=raw_content)]
     else:
-        # No JSON found - this is a general travel question, return raw text response
+        # No JSON found and not a trip query - return narrative response
         state["tripplan"] = None
-        state["messages"].append(AIMessage(content=raw_content))
+        state["messages"] = [AIMessage(content=raw_content)]
 
     # Step 5: Ensure only one message is returned
     if len(state["messages"]) > 1:

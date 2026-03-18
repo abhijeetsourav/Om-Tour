@@ -1,0 +1,13 @@
+flowchart TD
+  Start([Start]) --> Planner["planner_node"]
+  Planner -->|action: search_places| Search["search_node"]
+  Planner -->|action: trips| Trips["trips_node"]
+  Search --> Planner
+  Trips --> PerformTrips["perform_trips_node"]
+  PerformTrips --> Planner
+  Planner --> Critic["critic_node"]
+  Critic --> Decision["decision_node"]
+  Decision -->|reject & retries remain| Planner
+  Decision -->|accept| Formatter["formatter_node"]
+  Formatter --> End([End])
+  Decision -->|reject & max retries| Formatter
