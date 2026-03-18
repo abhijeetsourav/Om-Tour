@@ -230,3 +230,13 @@ async def validator_node(state, config):
         state["validation_result"] = {"valid": True, "issues": []}
         state["is_valid"] = True
         return state
+
+
+# https://github.com/sergio11/langgraph_travel_planner_assistant
+# https://github.com/HarimxChoi/langgraph-travel-agent
+# https://github.com/nirbar1985/ai-travel-agent
+# https://github.com/pavanbelagatti/Agentic-Travel-App
+# https://github.com/naakaarafr/AI-Travel-Agent-Advanced
+# https://github.com/bala-ceg/ai-travelassistant
+# https://github.com/FarazF19/Travel-Assistant-Agent-OpenAI-SDK
+# https://github.com/aws-samples/sample-travel-assistant-agent

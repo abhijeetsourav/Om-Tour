@@ -40,6 +40,12 @@ async def formatter_node(state: AgentState, config: RunnableConfig):
         tripplan = state.get("tripplan")
 
         if not tripplan:
+            # Check if there's already an error message in messages
+            messages = state.get("messages", [])
+            if messages and any("❌" in str(msg.content) or "Error" in str(msg.content) for msg in messages):
+                logger.info("No tripplan but error message already present - pass through")
+                return state
+            
             logger.warning("No TripPlan to format")
             state["messages"] = [AIMessage(content="No trip plan available to format.")]
             return state
@@ -78,10 +84,15 @@ async def formatter_node(state: AgentState, config: RunnableConfig):
 
         # Return formatted message
         state["messages"] = [AIMessage(content=formatted)]
+        
+        # CRITICAL: Clear tripplan from state to prevent JSON serialization in API response
+        # The formatted text is in messages; we don't need the structured tripplan anymore
+        state["tripplan"] = None
 
         return state
 
     except Exception as e:
         logger.error(f"Error in formatter_node: {e}", exc_info=True)
         state["messages"] = [AIMessage(content="Error formatting trip plan. Please try again.")]
+        state["tripplan"] = None  # Clear to prevent JSON leakage
         return state

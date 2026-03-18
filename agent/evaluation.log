@@ -1440,3 +1440,898 @@ You have depleted your monthly included credits. Purchase pre-paid credits to co
 2026-03-16 21:29:00,838 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_6
 2026-03-16 21:29:00,838 - __main__ - INFO - 
 ✓ Report saved to: /workspaces/Om-Tour/agent/evaluation/evaluation_report.json
+2026-03-18 22:44:47,846 - __main__ - INFO - 
+############################################################
+2026-03-18 22:44:47,847 - __main__ - INFO - SARATHI TRAVEL AGENT EVALUATION
+2026-03-18 22:44:47,847 - __main__ - INFO - ############################################################
+2026-03-18 22:44:47,847 - __main__ - INFO - Starting evaluation with 16 test cases
+2026-03-18 22:44:47,847 - __main__ - INFO - 
+[1/16]
+2026-03-18 22:44:47,848 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:47,848 - __main__ - INFO - Evaluating: realistic_1 (REALISTIC)
+2026-03-18 22:44:47,848 - __main__ - INFO - Query: plan a 3 day trip to rome
+2026-03-18 22:44:47,908 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:51,921 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-18 22:44:51,925 - travel.planner - INFO - Raw LLM output: {
+  "tripplan": {
+    "city": "Rome",
+    "days": 3,
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "name": "Visit the Colosseum",
+            "description": "Ancient Roman amphitheater",
+            "location": "Piazza del Colosseo, 1, 00184 Roma RM, Italy",
+            "estimated_cost": 20
+          },
+          {
+            "name": "Stroll through the Roman Forum",
+            "description": "Ruins of ancient Roman buildings",
+            "location": "Piazza del Foro Romano, 00184 Roma RM, Italy",
+            "estimated_cost": 15
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "name": "Explore the Vatican Museums",
+            "description": "Home to the Sistine Chapel and other art collections",
+            "location": "Viale Vaticano, 00165 Roma RM, Italy",
+            "estimated_cost": 30
+          },
+          {
+            "name": "Tour St. Peter's Basilica",
+            "description": "One of the largest churches in the world",
+            "location": "Viale Vaticano, 00165 Roma RM, Italy",
+            "estimated_cost": 25
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "activities": [
+          {
+            "name": "Walk along the Tiber River",
+            "description": "Enjoy the scenic views of the city",
+            "location": "Tiber River, Rome, Italy",
+            "estimated_cost": 0
+          },
+          {
+            "name": "Visit the Pantheon",
+            "description": "Ancient temple dedicated to all the gods of Rome",
+            "location": "Piazza della Rotonda, 00186 Roma RM, Italy",
+            "estimated_cost": 10
+          }
+        ]
+      }
+    ],
+    "estimated_budget": 110,
+    "confidence": 0.95,
+    "confidence_breakdown": {
+      "destination_certainty": 1.0,
+      "itinerary_realism": 0.95,
+      "pricing_accuracy": 0.9,
+      "feasibility": 0.95
+    }
+  }
+}
+2026-03-18 22:44:51,925 - travel.planner - INFO - Planner LLM output: {
+  "tripplan": {
+    "city": "Rome",
+    "days": 3,
+    "itinerary": [
+      {
+        "day": 1,
+  ...
+2026-03-18 22:44:51,926 - travel.planner - INFO - Successfully created PlannerResponse: tripplan=TripPlan(city='Rome', days=3, itinerary=[DayPlan(day=1, activities=[Place(name='Visit the Colosseum', description='Ancient Roman amphitheater', location='Piazza del Colosseo, 1, 00184 Roma RM, Italy', estimated_cost=20.0), Place(name='Stroll through the Roman Forum', description='Ruins of ancient Roman buildings', location='Piazza del Foro Romano, 00184 Roma RM, Italy', estimated_cost=15.0)]), DayPlan(day=2, activities=[Place(name='Explore the Vatican Museums', description='Home to the Sistine Chapel and other art collections', location='Viale Vaticano, 00165 Roma RM, Italy', estimated_cost=30.0), Place(name="Tour St. Peter's Basilica", description='One of the largest churches in the world', location='Viale Vaticano, 00165 Roma RM, Italy', estimated_cost=25.0)]), DayPlan(day=3, activities=[Place(name='Walk along the Tiber River', description='Enjoy the scenic views of the city', location='Tiber River, Rome, Italy', estimated_cost=0.0), Place(name='Visit the Pantheon', description='Ancient temple dedicated to all the gods of Rome', location='Piazza della Rotonda, 00186 Roma RM, Italy', estimated_cost=10.0)])], estimated_budget=110.0, confidence=0.95, confidence_breakdown=ConfidenceBreakdown(destination_certainty=1.0, itinerary_realism=0.95, pricing_accuracy=0.9, feasibility=0.95)) action=None error=None
+2026-03-18 22:44:51,926 - travel.planner - INFO - TripPlan parsed successfully for: Rome
+2026-03-18 22:44:51,926 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:51,947 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:51,951 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:51,952 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-18 22:44:51,952 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:51,953 - travel.critic - INFO - Validating TripPlan for city: Rome
+2026-03-18 22:44:51,953 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-18 22:44:51,953 - travel.critic - INFO - Running rule-based validation...
+2026-03-18 22:44:51,953 - travel.critic - INFO - Validating TripPlan: Rome, 3 days
+2026-03-18 22:44:51,953 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-18 22:44:51,953 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-18 22:44:51,953 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-18 22:44:51,953 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-18 22:44:51,953 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-18 22:44:51,953 - travel.critic - INFO - ✓ RULE VALIDATION PASSED
+2026-03-18 22:44:51,954 - travel.critic - INFO - Rule issues: None
+2026-03-18 22:44:51,954 - travel.critic - INFO - 
+--- STAGE 2: LLM CRITIC ---
+2026-03-18 22:44:51,954 - travel.critic - INFO - Running LLM-based semantic critique...
+2026-03-18 22:44:51,954 - travel.critic - INFO - Skipping LLM critic (disabled or not initialized)
+2026-03-18 22:44:51,954 - travel.critic - INFO - ✓ LLM CRITIC PASSED
+2026-03-18 22:44:51,954 - travel.critic - INFO - LLM issues: None
+2026-03-18 22:44:51,954 - travel.critic - INFO - 
+============================================================
+2026-03-18 22:44:51,954 - travel.critic - INFO - ✓✓✓ HYBRID VALIDATION PASSED ✓✓✓
+2026-03-18 22:44:51,954 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:51,954 - travel.critic - INFO - Decision: ACCEPT (route to formatter)
+2026-03-18 22:44:51,954 - travel.critic - INFO - Critic feedback: {'valid': True, 'issues': [], 'suggestion': 'No issues detected. Itinerary is ready!', 'stage': 'all_validations_passed'}
+2026-03-18 22:44:51,963 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:51,964 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:51,964 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:51,970 - travel.agent - INFO - Decision: Critic accepted, routing to formatter_node
+2026-03-18 22:44:51,977 - travel.formatter - INFO - Formatting TripPlan for city: Rome
+2026-03-18 22:44:51,977 - travel.formatter - INFO - Trip formatted successfully
+2026-03-18 22:44:51,982 - __main__ - ERROR - ❌ Planner failure on trip query realistic_1
+2026-03-18 22:44:51,983 - __main__ - INFO - 
+[2/16]
+2026-03-18 22:44:51,985 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:51,985 - __main__ - INFO - Evaluating: realistic_2 (REALISTIC)
+2026-03-18 22:44:51,985 - __main__ - INFO - Query: 5 day trip to manali
+2026-03-18 22:44:51,989 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:53,602 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-18 22:44:53,605 - travel.planner - INFO - Raw LLM output: {"tripplan": {"city": "Manali", "days": 5, "itinerary": [{"day": 1, "activities": [{"name": "Visit Hadimba Temple", "description": "Ancient temple dedicated to Goddess Hadimba", "location": "Manali, Himachal Pradesh, India", "estimated_cost": 10}]}], "estimated_budget": 500, "confidence": 0.9, "confidence_breakdown": {"destination_certainty": 1.0, "itinerary_realism": 0.95, "pricing_accuracy": 0.9, "feasibility": 0.95}}}
+2026-03-18 22:44:53,607 - travel.planner - INFO - Planner LLM output: {"tripplan": {"city": "Manali", "days": 5, "itinerary": [{"day": 1, "activities": [{"name": "Visit H...
+2026-03-18 22:44:53,608 - travel.planner - INFO - Successfully created PlannerResponse: tripplan=TripPlan(city='Manali', days=5, itinerary=[DayPlan(day=1, activities=[Place(name='Visit Hadimba Temple', description='Ancient temple dedicated to Goddess Hadimba', location='Manali, Himachal Pradesh, India', estimated_cost=10.0)])], estimated_budget=500.0, confidence=0.9, confidence_breakdown=ConfidenceBreakdown(destination_certainty=1.0, itinerary_realism=0.95, pricing_accuracy=0.9, feasibility=0.95)) action=None error=None
+2026-03-18 22:44:53,608 - travel.planner - INFO - TripPlan parsed successfully for: Manali
+2026-03-18 22:44:53,609 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:53,614 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:53,624 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:53,624 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-18 22:44:53,624 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:53,624 - travel.critic - INFO - Validating TripPlan for city: Manali
+2026-03-18 22:44:53,624 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-18 22:44:53,624 - travel.critic - INFO - Running rule-based validation...
+2026-03-18 22:44:53,624 - travel.critic - INFO - Validating TripPlan: Manali, 5 days
+2026-03-18 22:44:53,624 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-18 22:44:53,625 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-18 22:44:53,625 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-18 22:44:53,625 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-18 22:44:53,625 - travel.critic - WARNING - ⚠️  Empty day check found 4 issues
+2026-03-18 22:44:53,625 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-18 22:44:53,625 - travel.critic - WARNING - ❌ RULE VALIDATION FAILED
+2026-03-18 22:44:53,625 - travel.critic - WARNING - Rule validation issues:
+2026-03-18 22:44:53,625 - travel.critic - WARNING -   - Day 2 has no activities scheduled
+2026-03-18 22:44:53,625 - travel.critic - WARNING -   - Day 3 has no activities scheduled
+2026-03-18 22:44:53,625 - travel.critic - WARNING -   - Day 4 has no activities scheduled
+2026-03-18 22:44:53,625 - travel.critic - WARNING -   - Day 5 has no activities scheduled
+2026-03-18 22:44:53,626 - travel.critic - INFO - Critic feedback: {'valid': False, 'issues': ['Day 2 has no activities scheduled', 'Day 3 has no activities scheduled', 'Day 4 has no activities scheduled', 'Day 5 has no activities scheduled'], 'suggestion': 'Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary.', 'stage': 'rule_validation'}
+2026-03-18 22:44:53,626 - travel.critic - INFO - Decision: REJECT (rule violations)
+2026-03-18 22:44:53,630 - travel.decision - WARNING - ❌ Critic rejected itinerary.
+2026-03-18 22:44:53,630 - travel.decision - INFO - Regeneration attempt: 1/2
+2026-03-18 22:44:53,630 - travel.decision - INFO - Critic feedback: {'valid': False, 'issues': ['Day 2 has no activities scheduled', 'Day 3 has no activities scheduled', 'Day 4 has no activities scheduled', 'Day 5 has no activities scheduled'], 'suggestion': 'Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary.', 'stage': 'rule_validation'}
+2026-03-18 22:44:53,630 - travel.decision - INFO - Routing back to planner for regeneration...
+2026-03-18 22:44:53,630 - travel.decision - INFO - Suggestion: Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary.
+2026-03-18 22:44:53,632 - travel.agent - INFO - Decision: Critic rejected, routing back to planner for regeneration
+2026-03-18 22:44:53,636 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:53,636 - travel.planner - INFO - Planner regeneration attempt #1
+2026-03-18 22:44:53,636 - travel.planner - INFO - Critic feedback: {'valid': False, 'issues': ['Day 2 has no activities scheduled', 'Day 3 has no activities scheduled', 'Day 4 has no activities scheduled', 'Day 5 has no activities scheduled'], 'suggestion': 'Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary. Add activities to all empty days in your itinerary.', 'stage': 'rule_validation'}
+2026-03-18 22:44:58,986 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-18 22:44:58,987 - travel.planner - INFO - Raw LLM output: {
+  "tripplan": {
+    "city": "Manali",
+    "days": 5,
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "name": "Visit Hadimba Temple",
+            "description": "Explore the ancient temple dedicated to Goddess Hadimba",
+            "location": "Hadimba Temple, Manali, Himachal Pradesh, India",
+            "estimated_cost": 10
+          },
+          {
+            "name": "Dharamkot Viewpoint",
+            "description": "Enjoy panoramic views of the surrounding mountains",
+            "location": "Dharamkot Viewpoint, Manali, Himachal Pradesh, India",
+            "estimated_cost": 0
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "name": "Hiking to Solang Valley",
+            "description": "Enjoy scenic hikes and views of the Solang Valley",
+            "location": "Solang Valley, Manali, Himachal Pradesh, India",
+            "estimated_cost": 20
+          },
+          {
+            "name": "Visit Keylong Monastery",
+            "description": "Explore the historic Keylong Monastery",
+            "location": "Keylong Monastery, Manali, Himachal Pradesh, India",
+            "estimated_cost": 15
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "activities": [
+          {
+            "name": "Visit Rohtang Pass",
+            "description": "Experience the thrill of crossing the Rohtang Pass",
+            "location": "Rohtang Pass, Manali, Himachal Pradesh, India",
+            "estimated_cost": 30
+          },
+          {
+            "name": "Visit Kheerganga Waterfall",
+            "description": "Explore the beautiful Kheerganga Waterfall",
+            "location": "Kheerganga Waterfall, Manali, Himachal Pradesh, India",
+            "estimated_cost": 25
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "activities": [
+          {
+            "name": "Visit Bhuntar Fort",
+            "description": "Discover the historical Bhuntar Fort",
+            "location": "Bhuntar Fort, Manali, Himachal Pradesh, India",
+            "estimated_cost": 10
+          },
+          {
+            "name": "Visit Manu Wildlife Sanctuary",
+            "description": "Explore the wildlife and nature at Manu Wildlife Sanctuary",
+            "location": "Manu Wildlife Sanctuary, Manali, Himachal Pradesh, India",
+            "estimated_cost": 20
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "activities": [
+          {
+            "name": "Visit Vashisht Temple",
+            "description": "Visit the serene Vashisht Temple",
+            "location": "Vashisht Temple, Manali, Himachal Pradesh, India",
+            "estimated_cost": 5
+          },
+          {
+            "name": "Relax at Manali Lake",
+            "description": "Relax and enjoy the scenic beauty of Manali Lake",
+            "location": "Manali Lake, Manali, Himachal Pradesh, India",
+            "estimated_cost": 0
+          }
+        ]
+      }
+    ],
+    "estimated_budget": 125,
+    "confidence": 0.95,
+    "confidence_breakdown": {
+      "destination_certainty": 1.0,
+      "itinerary_realism": 0.95,
+      "pricing_accuracy": 0.9,
+      "feasibility": 0.95
+    }
+  }
+}
+2026-03-18 22:44:58,987 - travel.planner - INFO - Planner LLM output: {
+  "tripplan": {
+    "city": "Manali",
+    "days": 5,
+    "itinerary": [
+      {
+        "day": 1,
+...
+2026-03-18 22:44:58,988 - travel.planner - INFO - Successfully created PlannerResponse: tripplan=TripPlan(city='Manali', days=5, itinerary=[DayPlan(day=1, activities=[Place(name='Visit Hadimba Temple', description='Explore the ancient temple dedicated to Goddess Hadimba', location='Hadimba Temple, Manali, Himachal Pradesh, India', estimated_cost=10.0), Place(name='Dharamkot Viewpoint', description='Enjoy panoramic views of the surrounding mountains', location='Dharamkot Viewpoint, Manali, Himachal Pradesh, India', estimated_cost=0.0)]), DayPlan(day=2, activities=[Place(name='Hiking to Solang Valley', description='Enjoy scenic hikes and views of the Solang Valley', location='Solang Valley, Manali, Himachal Pradesh, India', estimated_cost=20.0), Place(name='Visit Keylong Monastery', description='Explore the historic Keylong Monastery', location='Keylong Monastery, Manali, Himachal Pradesh, India', estimated_cost=15.0)]), DayPlan(day=3, activities=[Place(name='Visit Rohtang Pass', description='Experience the thrill of crossing the Rohtang Pass', location='Rohtang Pass, Manali, Himachal Pradesh, India', estimated_cost=30.0), Place(name='Visit Kheerganga Waterfall', description='Explore the beautiful Kheerganga Waterfall', location='Kheerganga Waterfall, Manali, Himachal Pradesh, India', estimated_cost=25.0)]), DayPlan(day=4, activities=[Place(name='Visit Bhuntar Fort', description='Discover the historical Bhuntar Fort', location='Bhuntar Fort, Manali, Himachal Pradesh, India', estimated_cost=10.0), Place(name='Visit Manu Wildlife Sanctuary', description='Explore the wildlife and nature at Manu Wildlife Sanctuary', location='Manu Wildlife Sanctuary, Manali, Himachal Pradesh, India', estimated_cost=20.0)]), DayPlan(day=5, activities=[Place(name='Visit Vashisht Temple', description='Visit the serene Vashisht Temple', location='Vashisht Temple, Manali, Himachal Pradesh, India', estimated_cost=5.0), Place(name='Relax at Manali Lake', description='Relax and enjoy the scenic beauty of Manali Lake', location='Manali Lake, Manali, Himachal Pradesh, India', estimated_cost=0.0)])], estimated_budget=125.0, confidence=0.95, confidence_breakdown=ConfidenceBreakdown(destination_certainty=1.0, itinerary_realism=0.95, pricing_accuracy=0.9, feasibility=0.95)) action=None error=None
+2026-03-18 22:44:58,988 - travel.planner - INFO - TripPlan parsed successfully for: Manali
+2026-03-18 22:44:58,988 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:58,990 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:58,993 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:58,993 - travel.critic - INFO - HYBRID CRITIC VALIDATION SYSTEM
+2026-03-18 22:44:58,993 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:58,993 - travel.critic - INFO - Validating TripPlan for city: Manali
+2026-03-18 22:44:58,993 - travel.critic - INFO - 
+--- STAGE 1: RULE VALIDATOR ---
+2026-03-18 22:44:58,993 - travel.critic - INFO - Running rule-based validation...
+2026-03-18 22:44:58,993 - travel.critic - INFO - Validating TripPlan: Manali, 5 days
+2026-03-18 22:44:58,993 - travel.critic - INFO - [Rule 1/5] Checking activity density...
+2026-03-18 22:44:58,993 - travel.critic - INFO - [Rule 2/5] Checking for duplicates and nested attractions...
+2026-03-18 22:44:58,993 - travel.critic - INFO - [Rule 3/5] Validating activity costs...
+2026-03-18 22:44:58,994 - travel.critic - INFO - [Rule 4/5] Checking for empty days...
+2026-03-18 22:44:58,994 - travel.critic - INFO - [Rule 5/5] Checking for suspicious locations...
+2026-03-18 22:44:58,994 - travel.critic - INFO - ✓ RULE VALIDATION PASSED
+2026-03-18 22:44:58,994 - travel.critic - INFO - Rule issues: None
+2026-03-18 22:44:58,994 - travel.critic - INFO - 
+--- STAGE 2: LLM CRITIC ---
+2026-03-18 22:44:58,994 - travel.critic - INFO - Running LLM-based semantic critique...
+2026-03-18 22:44:58,994 - travel.critic - INFO - Skipping LLM critic (disabled or not initialized)
+2026-03-18 22:44:58,994 - travel.critic - INFO - ✓ LLM CRITIC PASSED
+2026-03-18 22:44:58,994 - travel.critic - INFO - LLM issues: None
+2026-03-18 22:44:58,994 - travel.critic - INFO - 
+============================================================
+2026-03-18 22:44:58,994 - travel.critic - INFO - ✓✓✓ HYBRID VALIDATION PASSED ✓✓✓
+2026-03-18 22:44:58,994 - travel.critic - INFO - ============================================================
+2026-03-18 22:44:58,995 - travel.critic - INFO - Decision: ACCEPT (route to formatter)
+2026-03-18 22:44:58,995 - travel.critic - INFO - Critic feedback: {'valid': True, 'issues': [], 'suggestion': 'No issues detected. Itinerary is ready!', 'stage': 'all_validations_passed'}
+2026-03-18 22:44:58,998 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:58,998 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:58,998 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:58,999 - travel.agent - INFO - Decision: Critic accepted, routing to formatter_node
+2026-03-18 22:44:59,002 - travel.formatter - INFO - Formatting TripPlan for city: Manali
+2026-03-18 22:44:59,002 - travel.formatter - INFO - Trip formatted successfully
+2026-03-18 22:44:59,004 - __main__ - ERROR - ❌ Planner failure on trip query realistic_2
+2026-03-18 22:44:59,004 - __main__ - INFO - 
+[3/16]
+2026-03-18 22:44:59,005 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:59,005 - __main__ - INFO - Evaluating: realistic_3 (REALISTIC)
+2026-03-18 22:44:59,005 - __main__ - INFO - Query: 2 day trip to agra
+2026-03-18 22:44:59,007 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:59,227 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:44:59,227 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aea-527bc3382df4981607375757;0d9245ba-5e44-455c-acac-d43d5304ea68)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aea-527bc3382df4981607375757;0d9245ba-5e44-455c-acac-d43d5304ea68)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:44:59,230 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:59,232 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:59,234 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:44:59,237 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:59,237 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:59,237 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:59,239 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:44:59,240 - __main__ - ERROR - ❌ Planner failure on trip query realistic_3
+2026-03-18 22:44:59,241 - __main__ - INFO - 
+[4/16]
+2026-03-18 22:44:59,241 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:59,241 - __main__ - INFO - Evaluating: realistic_4 (REALISTIC)
+2026-03-18 22:44:59,241 - __main__ - INFO - Query: plan 4 day trip to paris with 5 visits per day
+2026-03-18 22:44:59,244 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:59,456 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:44:59,457 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-4ee90ce444193b8b35d23864;674a55dd-7cac-4b1e-bf75-f5ea0d65c7b9)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-4ee90ce444193b8b35d23864;674a55dd-7cac-4b1e-bf75-f5ea0d65c7b9)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:44:59,458 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:59,459 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:59,462 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:44:59,465 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:59,465 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:59,465 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:59,467 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:44:59,468 - __main__ - ERROR - ❌ Planner failure on trip query realistic_4
+2026-03-18 22:44:59,468 - __main__ - INFO - 
+[5/16]
+2026-03-18 22:44:59,468 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:59,469 - __main__ - INFO - Evaluating: realistic_5 (REALISTIC)
+2026-03-18 22:44:59,469 - __main__ - INFO - Query: suggest a 6 day itinerary for delhi
+2026-03-18 22:44:59,471 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:59,678 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:44:59,679 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-67de8968084f34f5339f7e46;27d3d22f-543f-49f8-abe6-6c90f25e24be)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-67de8968084f34f5339f7e46;27d3d22f-543f-49f8-abe6-6c90f25e24be)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:44:59,680 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:59,683 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:59,687 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:44:59,691 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:59,692 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:59,692 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:59,693 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:44:59,696 - __main__ - ERROR - ❌ Planner failure on trip query realistic_5
+2026-03-18 22:44:59,696 - __main__ - INFO - 
+[6/16]
+2026-03-18 22:44:59,696 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:59,697 - __main__ - INFO - Evaluating: unrealistic_1 (UNREALISTIC)
+2026-03-18 22:44:59,697 - __main__ - INFO - Query: trip to mars
+2026-03-18 22:44:59,705 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:44:59,955 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:44:59,957 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-6631109c144a9b513b976c53;73a7e253-51cc-4393-8b5d-c19a372084ba)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-6631109c144a9b513b976c53;73a7e253-51cc-4393-8b5d-c19a372084ba)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:44:59,962 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:44:59,968 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:44:59,971 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:44:59,978 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:44:59,978 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:44:59,978 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:44:59,980 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:44:59,982 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_1
+2026-03-18 22:44:59,982 - __main__ - INFO - 
+[7/16]
+2026-03-18 22:44:59,982 - __main__ - INFO - 
+============================================================
+2026-03-18 22:44:59,983 - __main__ - INFO - Evaluating: unrealistic_2 (UNREALISTIC)
+2026-03-18 22:44:59,983 - __main__ - INFO - Query: vacation at a nuclear weapons base
+2026-03-18 22:44:59,987 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:00,211 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:00,212 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-2f2c124d1e9d9b636b6e4a07;0fe5c3f9-bfbb-46b5-83a8-77da637584e6)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aeb-2f2c124d1e9d9b636b6e4a07;0fe5c3f9-bfbb-46b5-83a8-77da637584e6)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:00,213 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:00,215 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:00,217 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:00,220 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:00,220 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:00,220 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:00,221 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:00,223 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_2
+2026-03-18 22:45:00,223 - __main__ - INFO - 
+[8/16]
+2026-03-18 22:45:00,223 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:00,223 - __main__ - INFO - Evaluating: unrealistic_3 (UNREALISTIC)
+2026-03-18 22:45:00,223 - __main__ - INFO - Query: 2 day trip to paris with 50 activities per day
+2026-03-18 22:45:00,226 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:00,433 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:00,434 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-7f148fc602aa6c2a4a9b5f26;aa0d5170-f32c-41aa-a890-adbf25c4645f)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-7f148fc602aa6c2a4a9b5f26;aa0d5170-f32c-41aa-a890-adbf25c4645f)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:00,435 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:00,436 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:00,439 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:00,441 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:00,441 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:00,442 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:00,443 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:00,444 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_3
+2026-03-18 22:45:00,445 - __main__ - INFO - 
+[9/16]
+2026-03-18 22:45:00,445 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:00,445 - __main__ - INFO - Evaluating: unrealistic_4 (UNREALISTIC)
+2026-03-18 22:45:00,445 - __main__ - INFO - Query: plan a trip to atlantis
+2026-03-18 22:45:00,448 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:00,653 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:00,653 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-2fd730ce5559b2716fe30a1b;9849e3ad-517e-4bd3-8436-48ea7a6d2172)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-2fd730ce5559b2716fe30a1b;9849e3ad-517e-4bd3-8436-48ea7a6d2172)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:00,654 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:00,656 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:00,658 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:00,661 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:00,661 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:00,661 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:00,662 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:00,664 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_4
+2026-03-18 22:45:00,664 - __main__ - INFO - 
+[10/16]
+2026-03-18 22:45:00,664 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:00,664 - __main__ - INFO - Evaluating: unrealistic_5 (UNREALISTIC)
+2026-03-18 22:45:00,664 - __main__ - INFO - Query: 3 day trip to london with 25 activities each day
+2026-03-18 22:45:00,667 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:00,882 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:00,882 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-14ce07d114766d1e0c42c840;316851ab-6030-4dd5-a9be-e8e90f6ec923)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aec-14ce07d114766d1e0c42c840;316851ab-6030-4dd5-a9be-e8e90f6ec923)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:00,883 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:00,886 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:00,889 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:00,891 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:00,892 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:00,892 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:00,893 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:00,894 - __main__ - ERROR - ❌ Planner failure on trip query unrealistic_5
+2026-03-18 22:45:00,895 - __main__ - INFO - 
+[11/16]
+2026-03-18 22:45:00,895 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:00,895 - __main__ - INFO - Evaluating: edge_case_1 (EDGE_CASES)
+2026-03-18 22:45:00,895 - __main__ - INFO - Query: hi
+2026-03-18 22:45:00,897 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:00,897 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-18 22:45:00,898 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-18 22:45:01,392 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:01,394 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:01,398 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:01,401 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:01,401 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:01,401 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:01,402 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:01,404 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-18 22:45:01,404 - __main__ - INFO - 
+[12/16]
+2026-03-18 22:45:01,404 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:01,404 - __main__ - INFO - Evaluating: edge_case_2 (EDGE_CASES)
+2026-03-18 22:45:01,405 - __main__ - INFO - Query: suggest places to visit
+2026-03-18 22:45:01,411 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:01,621 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:01,622 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aed-083ef0cc7045dde8713b9a58;0c8ad410-b862-4845-988c-03ae1b295985)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aed-083ef0cc7045dde8713b9a58;0c8ad410-b862-4845-988c-03ae1b295985)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:01,622 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:01,624 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:01,627 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:01,630 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:01,630 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:01,630 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:01,631 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:01,633 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_2
+2026-03-18 22:45:01,633 - __main__ - INFO - 
+[13/16]
+2026-03-18 22:45:01,633 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:01,633 - __main__ - INFO - Evaluating: edge_case_3 (EDGE_CASES)
+2026-03-18 22:45:01,633 - __main__ - INFO - Query: weekend trip near bangalore
+2026-03-18 22:45:01,636 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:01,847 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:01,847 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aed-76b0c77c04a001ae559b55dd;621156f9-e5df-4480-a1a8-00abc9dfa290)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aed-76b0c77c04a001ae559b55dd;621156f9-e5df-4480-a1a8-00abc9dfa290)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:01,848 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:01,849 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:01,852 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:01,856 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:01,856 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:01,856 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:01,857 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:01,859 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_3
+2026-03-18 22:45:01,859 - __main__ - INFO - 
+[14/16]
+2026-03-18 22:45:01,859 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:01,859 - __main__ - INFO - Evaluating: edge_case_4 (EDGE_CASES)
+2026-03-18 22:45:01,859 - __main__ - INFO - Query: hello, how are you?
+2026-03-18 22:45:01,862 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:01,862 - travel.planner - INFO - Greeting detected, searching for popular destinations
+2026-03-18 22:45:01,862 - googlemaps.client - INFO - API queries_quota: 60
+2026-03-18 22:45:02,589 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:02,590 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:02,593 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:02,595 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:02,595 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:02,595 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:02,596 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:02,598 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-18 22:45:02,598 - __main__ - INFO - 
+[15/16]
+2026-03-18 22:45:02,598 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:02,598 - __main__ - INFO - Evaluating: edge_case_5 (EDGE_CASES)
+2026-03-18 22:45:02,598 - __main__ - INFO - Query: what are some famous landmarks?
+2026-03-18 22:45:02,600 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:02,805 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:02,806 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aee-026f7aa246ac014f00319f51;a8b97b47-e84b-4895-9d09-69e0de75aef7)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aee-026f7aa246ac014f00319f51;a8b97b47-e84b-4895-9d09-69e0de75aef7)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:02,806 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:02,808 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:02,810 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:02,813 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:02,813 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:02,813 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:02,814 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:02,816 - __main__ - INFO - ℹ️  Non-trip query handled appropriately
+2026-03-18 22:45:02,816 - __main__ - INFO - 
+[16/16]
+2026-03-18 22:45:02,816 - __main__ - INFO - 
+============================================================
+2026-03-18 22:45:02,816 - __main__ - INFO - Evaluating: edge_case_6 (EDGE_CASES)
+2026-03-18 22:45:02,817 - __main__ - INFO - Query: plan trip to goa
+2026-03-18 22:45:02,819 - travel.base_node - INFO - [Planner] Starting processing
+2026-03-18 22:45:03,034 - httpx - INFO - HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2026-03-18 22:45:03,034 - travel.planner - ERROR - LLM error: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aee-5134e3c9105b56de423ad673;f6f00c07-3fd2-46fa-8cb9-474834fff1ef)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+Traceback (most recent call last):
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 458, in process
+    completion = client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 933, in chat_completion
+    data = self._inner_post(request_parameters, stream=stream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/inference/_client.py", line 286, in _inner_post
+    hf_raise_for_status(response)
+  File "/opt/python/3.11.7/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 889, in hf_raise_for_status
+    raise _format(HfHubHTTPError, str(e), response) from e
+huggingface_hub.errors.HfHubHTTPError: Client error '402 Payment Required' for url 'https://router.huggingface.co/v1/chat/completions' (Request ID: Root=1-69bb2aee-5134e3c9105b56de423ad673;f6f00c07-3fd2-46fa-8cb9-474834fff1ef)
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+
+You have depleted your monthly included credits. Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get 20x more included usage.
+2026-03-18 22:45:03,035 - travel.base_node - INFO - [Planner] Completed successfully
+2026-03-18 22:45:03,037 - travel.agent - INFO - No action detected, routing to critic_node
+2026-03-18 22:45:03,040 - travel.critic - INFO - No TripPlan in state, skipping critic validation
+2026-03-18 22:45:03,043 - travel.decision - INFO - ✓ Critic accepted itinerary.
+2026-03-18 22:45:03,043 - travel.decision - INFO - ✓ Resetting regeneration counter.
+2026-03-18 22:45:03,043 - travel.decision - INFO - Routing to formatter for final output...
+2026-03-18 22:45:03,044 - travel.agent - INFO - Decision: No tripplan, routing to END
+2026-03-18 22:45:03,046 - __main__ - ERROR - ❌ Planner failure on trip query edge_case_6
+2026-03-18 22:45:03,046 - __main__ - INFO - 
+✓ Report saved to: /workspaces/Om-Tour/agent/evaluation/evaluation_report.json

@@ -338,11 +338,12 @@ def _check_activity_costs(itinerary: List[DayPlan]) -> List[str]:
     """
     Check for unrealistic or placeholder activity costs.
     
-    LLMs often hallucinate costs, returning 0 for everything. This check
-    catches:
-    - All costs are 0 (placeholder data)
-    - Major attractions cost suspiciously little ($1-2 for Taj Mahal)
-    - Unrealistic bulk pricing
+    This is a SOFT check - we don't reject for zero costs since many attractions
+    are legitimately free (parks, public sites, walking tours, etc.).
+    
+    We only flag if:
+    - ALL costs are exactly 0 across ALL days (very suspicious)
+    - Costs are negative (impossible)
 
     Args:
         itinerary: List of DayPlan objects
@@ -352,6 +353,7 @@ def _check_activity_costs(itinerary: List[DayPlan]) -> List[str]:
     """
     issues = []
     zero_cost_count = 0
+    negative_cost_count = 0
     total_activities = 0
     all_costs = []
 
@@ -363,16 +365,22 @@ def _check_activity_costs(itinerary: List[DayPlan]) -> List[str]:
             
             if cost == 0 or cost is None:
                 zero_cost_count += 1
+            elif cost < 0:
+                negative_cost_count += 1
 
-    # If more than 50% have zero cost, it's placeholder data
-    if total_activities > 0 and zero_cost_count >= (total_activities * 0.5):
+    # Only reject if ALL activities have $0 cost (very suspicious)
+    if total_activities > 0 and zero_cost_count == total_activities:
         logger.error(
-            f"Cost validation FAILED: {zero_cost_count}/{total_activities} activities have $0 cost"
+            f"Cost validation issue: ALL {total_activities} activities have $0 cost (placeholder)"
         )
         issues.append(
-            f"Cost validation issue: {zero_cost_count} of {total_activities} activities have $0 estimated cost. "
-            f"This appears to be placeholder data. All major attractions should have realistic pricing "
-            f"(typically $5-50 per site).")
+            f"All {total_activities} activities have $0 estimated cost. "
+            f"Please add realistic pricing for activities.")
+    
+    # Reject if any activity has negative cost (impossible)
+    if negative_cost_count > 0:
+        logger.error(f"Cost validation issue: {negative_cost_count} activities have negative costs")
+        issues.append(f"{negative_cost_count} activities have negative costs. Please use realistic pricing.")
 
     return issues
 
@@ -754,7 +762,7 @@ async def critic_node(state: AgentState, config: RunnableConfig):
             
             state["critic_reject"] = True
             state["messages"] = [
-                AIMessage(content=f"Issues found in itinerary:\n" + "\n".join([f"• {issue}" for issue in rule_issues]))
+                AIMessage(content="Issues found in itinerary:\n" + "\n".join([f"• {issue}" for issue in rule_issues]))
             ]
             logger.info("Decision: REJECT (rule violations)")
             return state
@@ -795,7 +803,7 @@ async def critic_node(state: AgentState, config: RunnableConfig):
             
             state["critic_reject"] = True
             state["messages"] = [
-                AIMessage(content=f"Trip plan has issues:\n" + "\n".join([f"• {issue}" for issue in llm_issues]))
+                AIMessage(content="Trip plan has issues:\n" + "\n".join([f"• {issue}" for issue in llm_issues]))
             ]
             logger.info("Decision: REJECT (LLM critique)")
             return state

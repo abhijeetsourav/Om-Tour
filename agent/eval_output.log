@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspaces/Om-Tour/agent/evaluation/run_eval.py", line 26, in <module>
+    from travel.agent import graph
+  File "/workspaces/Om-Tour/agent/travel/agent.py", line 10, in <module>
+    from travel.planner import planner_node
+  File "/workspaces/Om-Tour/agent/travel/planner.py", line 12, in <module>
+    from travel.search import search_for_places
+  File "/workspaces/Om-Tour/agent/travel/search.py", line 5, in <module>
+    from copilotkit.langgraph import copilotkit_emit_state, copilotkit_customize_config
+ModuleNotFoundError: No module named 'copilotkit'

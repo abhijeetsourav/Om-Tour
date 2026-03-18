@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "timestamp": "2026-03-16T21:29:00.838354",
+    "timestamp": "2026-03-18T22:45:03.046279",
     "total_queries": 16,
     "test_file": "/workspaces/Om-Tour/agent/evaluation/test_queries.json"
   },
   "aggregate_metrics": {
-    "schema_success_rate": 0.0625,
+    "schema_success_rate": 0.0,
     "critic_rejection_rate": 0.0,
-    "hallucination_rate": 0.0,
-    "zero_cost_rate": 1.0,
-    "avg_activities_per_day": 3.0,
-    "max_activities_per_day": 3.0,
-    "avg_realism_score": 0.75,
-    "avg_response_latency_ms": 1211.88
+    "hallucination_rate": 0,
+    "zero_cost_rate": 0,
+    "avg_activities_per_day": 0,
+    "max_activities_per_day": 0,
+    "avg_realism_score": 0,
+    "avg_response_latency_ms": 948.91
   },
   "status_breakdown": {
-    "accepted": 4,
+    "accepted": 3,
     "rejected": 0,
-    "error": 12,
+    "error": 13,
     "skipped": 0
   },
   "category_breakdown": {
     "REALISTIC": {
       "total": 5,
-      "accepted": 1,
+      "accepted": 0,
       "rejected": 0,
-      "acceptance_rate": 0.2,
+      "acceptance_rate": 0.0,
       "rejection_rate": 0.0
     },
     "UNREALISTIC": {
@@ -48,17 +48,17 @@
       "query_id": "realistic_1",
       "category": "REALISTIC",
       "query": "plan a 3 day trip to rome",
-      "status": "accepted",
-      "schema_valid": true,
+      "status": "error",
+      "schema_valid": false,
       "critic_rejected": false,
-      "activities_per_day": 3.0,
-      "max_activities": 3,
-      "realism_score": 0.75,
-      "confidence": 0.95,
+      "activities_per_day": 0,
+      "max_activities": 0,
+      "realism_score": 0.0,
+      "confidence": 0.0,
       "hallucination_detected": false,
-      "zero_cost_count": 2,
-      "response_latency_ms": 4800.28,
-      "error": null
+      "zero_cost_count": 0,
+      "response_latency_ms": 4131.42,
+      "error": "Planner failed to produce TripPlan"
     },
     {
       "query_id": "realistic_2",
@@ -73,7 +73,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 3543.03,
+      "response_latency_ms": 7018.68,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -89,7 +89,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 2543.19,
+      "response_latency_ms": 235.59,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -105,7 +105,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 3163.15,
+      "response_latency_ms": 227.47,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -121,7 +121,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 455.35,
+      "response_latency_ms": 226.83,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -137,7 +137,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 464.33,
+      "response_latency_ms": 284.99,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -153,7 +153,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 448.22,
+      "response_latency_ms": 239.87,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -169,7 +169,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 454.36,
+      "response_latency_ms": 221.07,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -185,7 +185,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 453.19,
+      "response_latency_ms": 219.18,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -201,7 +201,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 447.18,
+      "response_latency_ms": 229.81,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -217,7 +217,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 525.73,
+      "response_latency_ms": 508.86,
       "error": null
     },
     {
@@ -233,7 +233,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 232.21,
+      "response_latency_ms": 227.58,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -249,7 +249,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 456.87,
+      "response_latency_ms": 225.72,
       "error": "Planner failed to produce TripPlan"
     },
     {
@@ -265,7 +265,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 723.87,
+      "response_latency_ms": 738.33,
       "error": null
     },
     {
@@ -281,7 +281,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 232.18,
+      "response_latency_ms": 218.15,
       "error": null
     },
     {
@@ -297,7 +297,7 @@
       "confidence": 0.0,
       "hallucination_detected": false,
       "zero_cost_count": 0,
-      "response_latency_ms": 446.96,
+      "response_latency_ms": 229.01,
       "error": "Planner failed to produce TripPlan"
     }
   ]

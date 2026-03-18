@@ -77,20 +77,20 @@ def parse_tripplan_from_llm_output(llm_output: str):
     def normalize_confidence(data: dict):
         """Ensure confidence is a float between 0 and 1."""
         conf = data.get("confidence", 0.7)
-        
+
         # Handle string values (e.g., "90%" or "0.9")
         if isinstance(conf, str):
             conf = conf.replace("%", "").strip()
-        
+
         try:
             conf = float(conf)
         except (ValueError, TypeError):
             conf = 0.7
-        
+
         # If > 1, assume it's a percentage and convert to decimal
         if conf > 1:
             conf = conf / 100
-        
+
         # Clamp to [0, 1] range
         conf = max(0.0, min(1.0, conf))
         data["confidence"] = conf
@@ -109,7 +109,7 @@ def parse_tripplan_from_llm_output(llm_output: str):
 
     # Normalize confidence field
     normalize_confidence(data)
-    
+
     try:
         tripplan = TripPlan(**data)
         return tripplan
@@ -343,7 +343,7 @@ RESPONSE FORMAT:
     tripplan = parse_tripplan_from_llm_output(raw_content)
 
     # Detect if user is asking for a trip
-    is_trip_query = any(keyword in user_message.lower() for keyword in 
+    is_trip_query = any(keyword in user_message.lower() for keyword in
                         ["trip", "travel", "plan", "itinerary", "journey", "vacation", "tour"])
 
     state["messages"] = []  # Ensure only one message is returned
@@ -358,31 +358,34 @@ RESPONSE FORMAT:
     elif is_trip_query and not tripplan:
         # User asked for a trip but no JSON was generated
         # Check if LLM intentionally refused (substantial text response) vs parsing error
-        
+
         if raw_content and len(raw_content.strip()) > 100 and not json_block:
             # LLM provided a substantial non-JSON response (likely a refusal with explanation)
-            logger.info("Trip query: LLM provided refusal/explanation. Passing to critic for review.")
+            logger.info(
+                "Trip query: LLM provided refusal/explanation. Passing to critic for review.")
             state["tripplan"] = None
-            state["messages"] = [AIMessage(content=raw_content)]  # Keep the refusal message
+            # Keep the refusal message
+            state["messages"] = [AIMessage(content=raw_content)]
         else:
             # Likely a parsing/formatting error - retry with stricter prompt
-            logger.info("Trip query detected but parsing failed. Retrying with stricter JSON prompt.")
-            
-            retry_prompt = f"""Extract ONLY a valid JSON TripPlan from the previous response.
-Return ONLY valid JSON matching this schema, no explanations:
+            logger.info(
+                "Trip query detected but parsing failed. Retrying with stricter JSON prompt.")
 
-{{
-    "city": string,
-    "days": number,
-    "itinerary": [{{"day": number, "activities": [{{"name": string, "description": string, "location": string, "estimated_cost": number}}]}}],
-    "estimated_budget": number,
-    "confidence": number (0.0 to 1.0)
-}}
-"""
-            
+            retry_prompt = f"""Extract ONLY a valid JSON TripPlan from the previous response.
+                Return ONLY valid JSON matching this schema, no explanations:
+
+                {{
+                    "city": string,
+                    "days": number,
+                    "itinerary": [{{"day": number, "activities": [{{"name": string, "description": string, "location": string, "estimated_cost": number}}]}}],
+                    "estimated_budget": number,
+                    "confidence": number (0.0 to 1.0)
+                }}
+                """
+
             retry_messages = messages.copy()
             retry_messages.append({"role": "user", "content": retry_prompt})
-            
+
             try:
                 retry_completion = client.chat.completions.create(
                     model=HUGGINGFACE_MODEL,
@@ -390,10 +393,11 @@ Return ONLY valid JSON matching this schema, no explanations:
                 )
                 retry_content = retry_completion.choices[0].message.content
                 retry_tripplan = parse_tripplan_from_llm_output(retry_content)
-                
+
                 if retry_tripplan:
                     state["tripplan"] = retry_tripplan
-                    state["messages"] = []  # Don't format here - let critic handle it
+                    # Don't format here - let critic handle it
+                    state["messages"] = []
                 else:
                     state["tripplan"] = None
                     state["messages"] = [

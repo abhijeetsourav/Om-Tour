@@ -10,6 +10,7 @@ Implements regeneration counter to prevent infinite loops.
 
 from travel.state import AgentState, MAX_REGEN_ATTEMPTS
 from langchain_core.runnables import RunnableConfig
+from langchain_core.messages import AIMessage
 from langsmith import traceable
 import logging
 
@@ -53,10 +54,23 @@ def decision_node(state: AgentState, config: RunnableConfig):
                 logger.info(f"Suggestion: {critic_feedback.get('suggestion', 'Please revise your itinerary')}")
                 return state
             else:
-                # Max attempts reached
+                # Max attempts reached - give up but provide helpful message
                 logger.error(f"❌ Max regeneration attempts ({MAX_REGEN_ATTEMPTS}) reached.")
-                logger.info("Routing to formatter with error message.")
-                state["critic_reject"] = False  # Stop rejection cycle
+                logger.info("Providing user feedback about failed attempts.")
+                
+                # Create a helpful message for the user
+                issues_summary = "\n".join([f"• {issue}" for issue in critic_feedback.get('issues', [])])
+                error_message = (
+                    f"❌ Unable to generate a suitable itinerary after {MAX_REGEN_ATTEMPTS} attempts.\n\n"
+                    f"Issues encountered:\n{issues_summary}\n\n"
+                    f"Please try:\n"
+                    f"- Shortening the trip duration\n"
+                    f"- Choosing a different destination\n"
+                    f"- Being more specific about what you want to do"
+                )
+                state["messages"] = [AIMessage(content=error_message)]
+                state["critic_reject"] = False  # Stop rejection cycle (route to formatter)
+                state["tripplan"] = None  # Clear tripplan as it's invalid
                 return state
         else:
             # Critic accepted the plan
